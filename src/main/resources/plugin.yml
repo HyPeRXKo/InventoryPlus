@@ -1,0 +1,6 @@
+name: InventoryPlus
+version: '${project.version}'
+main: fr.infinitystudios.inventoryplus.InventoryPlus
+api-version: 1.19
+authors: [ HyPeRXKo ]
+website: https://vlxproject.fr
