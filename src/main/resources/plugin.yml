@@ -4,3 +4,18 @@ main: fr.infinitystudios.inventoryplus.InventoryPlus
 api-version: 1.19
 authors: [ HyPeRXKo ]
 website: https://vlxproject.fr
+commands:
+  InventoryPlus:
+    description: main command
+    usage: /<command>
+    aliases: [Invplus, inp]
+permissions:
+  inventoryplus.mining.1:
+    description: Tier 1 of mining inventory.
+    default: false
+  inventoryplus.wood.1:
+    description: Tier 1 of woodcutting inventory.
+    default: false
+  inventoryplus.farming.1:
+    description: Tier 1 of farming inventory.
+    default: false
