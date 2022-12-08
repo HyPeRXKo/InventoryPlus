@@ -32,7 +32,8 @@ public class FileUtils {
         File playerdatafile = new File(plugin.getDataFolder() + "/data/", p.getUniqueId() + ".yml");
         playerdata = new YamlConfiguration();
         playerdata.set("player", p.getName());
-        if(miningperm(p)){
+        if(miningperm(p) || p.isOp()){
+            plugin.getLogger().severe("wsh on est ou la" + content.get("diamond"));
             playerdata.set("mining.diamond", content.get("diamond"));
         }
         try {
