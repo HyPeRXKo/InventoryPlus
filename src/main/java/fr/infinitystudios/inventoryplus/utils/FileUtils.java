@@ -36,6 +36,7 @@ public class FileUtils {
         PermUtils pu = new PermUtils();
         if(pu.hasminingperm(p) || p.isOp()){
             playerdata.set("mining.diamond", content.get("diamond"));
+            playerdata.set("mining.coal", content.get("coal"));
         }
         try {
             playerdata.save(playerdatafile);}
@@ -46,6 +47,7 @@ public class FileUtils {
     public Map<String, Integer> GetConfigContent(FileConfiguration playerfile){
         Map<String, Integer> content = new HashMap<>();
         content.put("diamond", playerfile.getInt("mining.diamond"));
+        content.put("coal", playerfile.getInt("mining.coal"));
 
 
 

@@ -2,6 +2,7 @@ package fr.infinitystudios.inventoryplus;
 
 import fr.infinitystudios.inventoryplus.commands.InventoryPlusCommand;
 import fr.infinitystudios.inventoryplus.listeners.GuiInteraction;
+import fr.infinitystudios.inventoryplus.listeners.PlayerFirstConnect;
 import fr.infinitystudios.inventoryplus.listeners.PlayerLoot;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,6 +23,7 @@ public final class InventoryPlus extends JavaPlugin {
         getCommand("InventoryPlus").setExecutor(new InventoryPlusCommand());
         getServer().getPluginManager().registerEvents(new PlayerLoot(), this);
         getServer().getPluginManager().registerEvents(new GuiInteraction(), this);
+        getServer().getPluginManager().registerEvents(new PlayerFirstConnect(), this);
         getConfig().options().configuration();
         saveDefaultConfig();
         checkfolder();
