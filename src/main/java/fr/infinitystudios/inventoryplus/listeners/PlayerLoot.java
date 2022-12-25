@@ -29,6 +29,7 @@ public class PlayerLoot implements Listener {
     public void PlayerLootEvent(EntityPickupItemEvent e){
         if(miningitems.isEmpty()){
             miningitems.add(Material.DIAMOND);
+            miningitems.add(Material.COAL);
         }
         if(e.getEntity().getType() == EntityType.PLAYER){
             Player p = (Player) e.getEntity();

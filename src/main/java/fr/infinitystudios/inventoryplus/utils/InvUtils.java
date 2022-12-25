@@ -31,6 +31,10 @@ public class InvUtils {
                 item.setType(Material.GOLD_INGOT);
                 amount = content.get("gold");
                 break;
+            case "coal":
+                item.setType(Material.COAL);
+                amount = content.get("coal");
+                break;
         }
         if(item.getType() == Material.AIR || amount == -1 || amount == 0){return false;}
 

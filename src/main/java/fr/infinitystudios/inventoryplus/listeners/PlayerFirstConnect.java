@@ -2,6 +2,7 @@ package fr.infinitystudios.inventoryplus.listeners;
 
 import fr.infinitystudios.inventoryplus.utils.FileUtils;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
@@ -11,7 +12,7 @@ import java.util.Map;
 public class PlayerFirstConnect implements Listener {
 
     public void FirstConnection(PlayerLoginEvent e){
-        Player p = (Player) e.getPlayer();
+        Player p = e.getPlayer();
         if(p.hasPlayedBefore()){
             FileUtils fu = new FileUtils();
             Map<String, Integer> content = new HashMap<>();
