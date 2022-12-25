@@ -18,6 +18,9 @@ public class GuiUtils {
         Inventory gui = Bukkit.createInventory(null, 27, cc("&6Mining Backpack"));
 
         gui.setItem(0, iu.ItemGuiDiamond(p));
+        gui.setItem(1, iu.ItemGuiGold(p));
+        gui.setItem(2, iu.ItemGuiCoal(p));
+        gui.setItem(3, iu.ItemMiningBackpack(p));
 
         return gui;
     }

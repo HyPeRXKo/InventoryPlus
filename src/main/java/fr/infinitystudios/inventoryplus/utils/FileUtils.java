@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class FileUtils {
@@ -32,8 +33,8 @@ public class FileUtils {
         File playerdatafile = new File(plugin.getDataFolder() + "/data/", p.getUniqueId() + ".yml");
         playerdata = new YamlConfiguration();
         playerdata.set("player", p.getName());
-        if(miningperm(p) || p.isOp()){
-            plugin.getLogger().severe("wsh on est ou la" + content.get("diamond"));
+        PermUtils pu = new PermUtils();
+        if(pu.hasminingperm(p) || p.isOp()){
             playerdata.set("mining.diamond", content.get("diamond"));
         }
         try {
@@ -42,9 +43,12 @@ public class FileUtils {
             e.printStackTrace();}
     }
 
-    public boolean miningperm(Player p){
-        return p.hasPermission("inventoryplus.mining.1") ||  p.hasPermission("inventoryplus.mining.2") || p.hasPermission("inventoryplus.mining.3");
+    public Map<String, Integer> GetConfigContent(FileConfiguration playerfile){
+        Map<String, Integer> content = new HashMap<>();
+        content.put("diamond", playerfile.getInt("mining.diamond"));
+
+
+
+        return content;
     }
-
-
 }
