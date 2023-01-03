@@ -37,6 +37,7 @@ public class FileUtils {
         if(pu.hasminingperm(p) || p.isOp()){
             playerdata.set("mining.diamond", content.get("diamond"));
             playerdata.set("mining.coal", content.get("coal"));
+            playerdata.set("mining.rawgold", content.get("rawgold"));
         }
         try {
             playerdata.save(playerdatafile);}
@@ -48,6 +49,7 @@ public class FileUtils {
         Map<String, Integer> content = new HashMap<>();
         content.put("diamond", playerfile.getInt("mining.diamond"));
         content.put("coal", playerfile.getInt("mining.coal"));
+        content.put("rawgold", playerfile.getInt("mining.rawgold"));
 
 
 

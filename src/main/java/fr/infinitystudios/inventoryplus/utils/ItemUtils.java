@@ -93,7 +93,7 @@ public class ItemUtils {
 
         return diamond;
     }
-    public ItemStack ItemGuiGold(Player p){
+    public ItemStack ItemGuiGoldIngot(Player p){
         FileUtils fu = new FileUtils();
         PermUtils pu = new PermUtils();
         ItemStack gold = new ItemStack(Material.GOLD_INGOT);
@@ -118,7 +118,31 @@ public class ItemUtils {
 
         return gold;
     }
+    public ItemStack ItemGuiGoldRaw(Player p){
+        FileUtils fu = new FileUtils();
+        PermUtils pu = new PermUtils();
+        ItemStack rawgold = new ItemStack(Material.RAW_GOLD);
+        ItemMeta meta = rawgold.getItemMeta();
+        int rawgoldamount = fu.GetPlayerConfig(p).getInt("mining.rawgold");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&6Raw Gold"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + rawgoldamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
 
+        if(rawgoldamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
+        meta.setLore(lore);
+        rawgold.setItemMeta(meta);
+
+        return rawgold;
+    }
     public ItemStack ItemGuiCoal(Player p){
         FileUtils fu = new FileUtils();
         PermUtils pu = new PermUtils();

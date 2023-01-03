@@ -38,7 +38,7 @@ public class GuiInteraction implements Listener {
                     ItemStack diamond = e.getCurrentItem();
                     Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
                     int newamount = diamond.getAmount() + content.get("diamond");
-                    if (newamount <= 200) {
+                    if (newamount <= pu.miningpermstacklmimit(p)) {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         content.put("diamond", newamount);
                         fu.SavePlayerConfig(p, content);
@@ -50,9 +50,21 @@ public class GuiInteraction implements Listener {
                     ItemStack coal = e.getCurrentItem();
                     Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
                     int newamount = coal.getAmount() + content.get("coal");
-                    if (newamount <= 200) {
+                    if (newamount <= pu.miningpermstacklmimit(p)) {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         content.put("coal", newamount);
+                        fu.SavePlayerConfig(p, content);
+                        p.openInventory(gu.getMiningGUItest(p));
+                        break;
+                    }
+                }
+                case RAW_GOLD: {
+                    ItemStack rawgold = e.getCurrentItem();
+                    Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+                    int newamount = rawgold.getAmount() + content.get("rawgold");
+                    if (newamount <= pu.miningpermstacklmimit(p)) {
+                        p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
+                        content.put("rawgold", newamount);
                         fu.SavePlayerConfig(p, content);
                         p.openInventory(gu.getMiningGUItest(p));
                         break;
@@ -85,9 +97,19 @@ public class GuiInteraction implements Listener {
                         break;
                     }
                 }
+                case RAW_GOLD: {
+                    if (iu.scaninventorysingle(p, "rawgold")) {
+                        Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+                        ItemStack rawgold = new ItemStack(Material.RAW_GOLD, content.get("rawgold"));
+                        p.getInventory().addItem(rawgold);
+                        content.put("rawgold", 0);
+                        fu.SavePlayerConfig(p, content);
+                        p.closeInventory();
+                        break;
+                    }
+                }
             }
         }
-
     }
 
 }

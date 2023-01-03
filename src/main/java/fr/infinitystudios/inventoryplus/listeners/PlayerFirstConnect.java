@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class PlayerFirstConnect implements Listener {
 
+    //@EventHandler
     public void FirstConnection(PlayerLoginEvent e){
         Player p = e.getPlayer();
         if(p.hasPlayedBefore()){

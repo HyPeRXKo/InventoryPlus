@@ -6,7 +6,6 @@ import fr.infinitystudios.inventoryplus.utils.InvUtils;
 import fr.infinitystudios.inventoryplus.utils.PermUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,6 +29,7 @@ public class PlayerLoot implements Listener {
         if(miningitems.isEmpty()){
             miningitems.add(Material.DIAMOND);
             miningitems.add(Material.COAL);
+            miningitems.add(Material.RAW_GOLD);
         }
         if(e.getEntity().getType() == EntityType.PLAYER){
             Player p = (Player) e.getEntity();
@@ -95,10 +95,41 @@ public class PlayerLoot implements Listener {
                             plugin.getLogger().severe(String.valueOf(content.get("coal")) + e.getItem().getItemStack().getAmount() + tempitemstack.getAmount());
                             break;
                         }
+                        case RAW_GOLD: {
+                            FileUtils fu = new FileUtils();
+                            PermUtils pu = new PermUtils();
+                            boolean cancel = false;
+                            Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+                            int newint = content.get("rawgold") + e.getItem().getItemStack().getAmount();
+                            int tempint = newint;
+                            int limit = pu.miningpermstacklmimit(p);
+                            ItemStack tempitemstack = e.getItem().getItemStack().clone();
+                            if (newint > limit) {
+                                for (int i = 1; i <= limit; i++) {
+                                    tempint = tempint - 1;
+                                    if(tempitemstack.getAmount() - i == 0){cancel=true; break;}
+                                    else if (tempint == limit) {
+                                        newint = tempint;
+                                        tempitemstack.setAmount(e.getItem().getItemStack().getAmount() - i);
+                                        plugin.getLogger().severe(String.valueOf(tempint) + tempitemstack.getAmount());
+                                        break;
+                                    }
+                                }
+                            }
+                            if(cancel){break;}
+                            plugin.getLogger().severe(String.valueOf(newint) + e.getItem().getItemStack().getAmount() + tempitemstack.getAmount() + content.get("rawgold"));
+                            content.put("rawgold", newint);
+                            fu.SavePlayerConfig(p, content);
+                            Bukkit.getScheduler().runTaskLater(plugin, () -> p.getInventory().removeItem(tempitemstack), 1L);
+                            plugin.getLogger().severe(String.valueOf(content.get("rawgold")) + e.getItem().getItemStack().getAmount() + tempitemstack.getAmount());
+                            break;
+                        }
                     }
                 }
             }
         }
     }
+
+
 
 }

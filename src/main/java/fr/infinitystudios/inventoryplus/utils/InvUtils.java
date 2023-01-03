@@ -27,9 +27,9 @@ public class InvUtils {
                 item.setType(Material.DIAMOND);
                 amount = content.get("diamond");
                 break;
-            case "gold":
-                item.setType(Material.GOLD_INGOT);
-                amount = content.get("gold");
+            case "rawgold":
+                item.setType(Material.RAW_GOLD);
+                amount = content.get("rawgold");
                 break;
             case "coal":
                 item.setType(Material.COAL);
