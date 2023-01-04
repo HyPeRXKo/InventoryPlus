@@ -143,6 +143,31 @@ public class ItemUtils {
 
         return rawgold;
     }
+    public ItemStack ItemGuiIronRaw(Player p){
+        FileUtils fu = new FileUtils();
+        PermUtils pu = new PermUtils();
+        ItemStack rawiron = new ItemStack(Material.RAW_IRON);
+        ItemMeta meta = rawiron.getItemMeta();
+        int rawironamount = fu.GetPlayerConfig(p).getInt("mining.rawiron");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&fRaw Iron"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + rawironamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(rawironamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
+        meta.setLore(lore);
+        rawiron.setItemMeta(meta);
+
+        return rawiron;
+    }
     public ItemStack ItemGuiCoal(Player p){
         FileUtils fu = new FileUtils();
         PermUtils pu = new PermUtils();

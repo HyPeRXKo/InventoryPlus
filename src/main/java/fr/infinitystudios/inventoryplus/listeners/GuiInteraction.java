@@ -70,6 +70,18 @@ public class GuiInteraction implements Listener {
                         break;
                     }
                 }
+                case RAW_IRON: {
+                    ItemStack rawiron = e.getCurrentItem();
+                    Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+                    int newamount = rawiron.getAmount() + content.get("rawiron");
+                    if (newamount <= pu.miningpermstacklmimit(p)) {
+                        p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
+                        content.put("rawiron", newamount);
+                        fu.SavePlayerConfig(p, content);
+                        p.openInventory(gu.getMiningGUItest(p));
+                        break;
+                    }
+                }
             }
         }
         else if(e.getClickedInventory() == e.getView().getTopInventory()){
@@ -103,6 +115,17 @@ public class GuiInteraction implements Listener {
                         ItemStack rawgold = new ItemStack(Material.RAW_GOLD, content.get("rawgold"));
                         p.getInventory().addItem(rawgold);
                         content.put("rawgold", 0);
+                        fu.SavePlayerConfig(p, content);
+                        p.closeInventory();
+                        break;
+                    }
+                }
+                case RAW_IRON: {
+                    if (iu.scaninventorysingle(p, "rawiron")) {
+                        Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+                        ItemStack rawiron = new ItemStack(Material.RAW_IRON, content.get("rawiron"));
+                        p.getInventory().addItem(rawiron);
+                        content.put("rawiron", 0);
                         fu.SavePlayerConfig(p, content);
                         p.closeInventory();
                         break;
