@@ -82,6 +82,30 @@ public class GuiInteraction implements Listener {
                         break;
                     }
                 }
+                case GOLD_INGOT: {
+                    ItemStack gold = e.getCurrentItem();
+                    Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+                    int newamount = gold.getAmount() + content.get("gold");
+                    if (newamount <= pu.miningpermstacklmimit(p)) {
+                        p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
+                        content.put("gold", newamount);
+                        fu.SavePlayerConfig(p, content);
+                        p.openInventory(gu.getMiningGUItest(p));
+                        break;
+                    }
+                }
+                case IRON_INGOT: {
+                    ItemStack iron = e.getCurrentItem();
+                    Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+                    int newamount = iron.getAmount() + content.get("iron");
+                    if (newamount <= pu.miningpermstacklmimit(p)) {
+                        p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
+                        content.put("iron", newamount);
+                        fu.SavePlayerConfig(p, content);
+                        p.openInventory(gu.getMiningGUItest(p));
+                        break;
+                    }
+                }
             }
         }
         else if(e.getClickedInventory() == e.getView().getTopInventory()){
@@ -126,6 +150,28 @@ public class GuiInteraction implements Listener {
                         ItemStack rawiron = new ItemStack(Material.RAW_IRON, content.get("rawiron"));
                         p.getInventory().addItem(rawiron);
                         content.put("rawiron", 0);
+                        fu.SavePlayerConfig(p, content);
+                        p.closeInventory();
+                        break;
+                    }
+                }
+                case GOLD_INGOT: {
+                    if (iu.scaninventorysingle(p, "gold")) {
+                        Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+                        ItemStack gold = new ItemStack(Material.GOLD_INGOT, content.get("gold"));
+                        p.getInventory().addItem(gold);
+                        content.put("gold", 0);
+                        fu.SavePlayerConfig(p, content);
+                        p.closeInventory();
+                        break;
+                    }
+                }
+                case IRON_INGOT: {
+                    if (iu.scaninventorysingle(p, "iron")) {
+                        Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+                        ItemStack iron = new ItemStack(Material.IRON_INGOT, content.get("iron"));
+                        p.getInventory().addItem(iron);
+                        content.put("iron", 0);
                         fu.SavePlayerConfig(p, content);
                         p.closeInventory();
                         break;

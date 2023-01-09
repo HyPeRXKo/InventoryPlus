@@ -38,6 +38,9 @@ public class FileUtils {
             playerdata.set("mining.diamond", content.get("diamond"));
             playerdata.set("mining.coal", content.get("coal"));
             playerdata.set("mining.rawgold", content.get("rawgold"));
+            playerdata.set("mining.goldingot", content.get("gold"));
+            playerdata.set("mining.rawiron", content.get("rawiron"));
+            playerdata.set("mining.ironingot", content.get("iron"));
         }
         try {
             playerdata.save(playerdatafile);}
@@ -50,6 +53,9 @@ public class FileUtils {
         content.put("diamond", playerfile.getInt("mining.diamond"));
         content.put("coal", playerfile.getInt("mining.coal"));
         content.put("rawgold", playerfile.getInt("mining.rawgold"));
+        content.put("gold", playerfile.getInt("mining.goldingot"));
+        content.put("rawiron", playerfile.getInt("mining.rawiron"));
+        content.put("iron", playerfile.getInt("mining.iron"));
 
 
 
