@@ -13,9 +13,27 @@ permissions:
   inventoryplus.mining.1:
     description: Tier 1 of mining inventory.
     default: false
+  inventoryplus.mining.2:
+    description: Tier 2 of mining inventory.
+    default: false
+  inventoryplus.mining.3:
+    description: Tier 3 of mining inventory.
+    default: false
   inventoryplus.wood.1:
     description: Tier 1 of woodcutting inventory.
     default: false
+  inventoryplus.wood.2:
+    description: Tier 2 of woodcutting inventory.
+    default: false
+  inventoryplus.wood.3:
+    description: Tier 3 of woodcutting inventory.
+    default: false
   inventoryplus.farming.1:
     description: Tier 1 of farming inventory.
+    default: false
+  inventoryplus.farming.2:
+    description: Tier 2 of farming inventory.
+    default: false
+  inventoryplus.farming.3:
+    description: Tier 3 of farming inventory.
     default: false

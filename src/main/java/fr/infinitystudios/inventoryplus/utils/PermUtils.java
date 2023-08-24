@@ -15,7 +15,7 @@ public class PermUtils {
     public int whatminingperm(Player p){
         if(p.hasPermission("inventoryplus.mining.1")){return 1;}
         else if(p.hasPermission("inventoryplus.mining.2")){return 2;}
-        else if(p.hasPermission("inventoryplus.mining.2")){return 3;}
+        else if(p.hasPermission("inventoryplus.mining.3")){return 3;}
         else {return 0;}
     }
 
