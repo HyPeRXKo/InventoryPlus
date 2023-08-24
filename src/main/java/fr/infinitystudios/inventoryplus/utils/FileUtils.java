@@ -61,4 +61,71 @@ public class FileUtils {
 
         return content;
     }
+
+    public Map<String, Integer> EmptyContent(){
+        Map<String, Integer> content = new HashMap<>();
+
+        //ORES
+
+        content.put("coal", 0);
+        content.put("coalpart", 0);
+
+        content.put("copper", 0);
+        content.put("rawcopper", 0);
+        content.put("copperpart", 0);
+
+        content.put("iron", 0);
+        content.put("rawiron", 0);
+        content.put("ironpart", 0);
+
+        content.put("gold", 0);
+        content.put("rawgold", 0);
+        content.put("goldpart", 0);
+
+        content.put("redstone", 0);
+        content.put("redstonepart", 0);
+
+        content.put("lapis", 0);
+        content.put("lapispart", 0);
+
+        content.put("diamond", 0);
+        content.put("diamondpart", 0);
+
+        content.put("quartz", 0);
+        content.put("quartzpart", 0);
+
+        content.put("netherite", 0);
+        content.put("netheritepart", 0);
+
+        //WOOD
+
+        content.put("oak", 0);
+        content.put("oakpart", 0);
+
+        content.put("spruce", 0);
+        content.put("sprucepart", 0);
+
+        content.put("birch", 0);
+        content.put("birchpart", 0);
+
+        content.put("acacia", 0);
+        content.put("acaciapart", 0);
+
+        content.put("cherry", 0);
+        content.put("cherrypart", 0);
+
+        content.put("darkoak", 0);
+        content.put("darkoakpart", 0);
+
+        content.put("jungle", 0);
+        content.put("junglepart", 0);
+
+        content.put("mangrove", 0);
+        content.put("mangrovepart", 0);
+
+        //Farming
+
+
+        return content;
+    }
 }
