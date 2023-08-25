@@ -42,7 +42,6 @@ public final class InventoryPlus extends JavaPlugin {
 }
 
 
-
 //TODO CHOOSE BETWEEN GENERALIZED IVENTORIES OR ITEM NBT (DONE, FIRST OPTION)
 //TODO : STRUCTURE FICHIER (Player name,mining storage, wood storage, farming storage, old save system recovery)
 //TODO : Load file, structure every section.

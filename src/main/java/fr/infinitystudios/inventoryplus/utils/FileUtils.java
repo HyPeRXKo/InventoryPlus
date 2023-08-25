@@ -91,6 +91,8 @@ public class FileUtils {
         content.put("diamond", 0);
         content.put("diamondpart", 0);
 
+        content.put("emerald", 0);
+
         content.put("quartz", 0);
         content.put("quartzpart", 0);
 
@@ -125,6 +127,27 @@ public class FileUtils {
 
         //Farming
 
+        content.put("wheat", 0);
+
+        content.put("carrot", 0);
+
+        content.put("potato", 0);
+
+        content.put("beetroot", 0);
+
+        content.put("sweetberries", 0);
+
+        content.put("pumpkin", 0);
+
+        content.put("melon", 0);
+
+        content.put("sugarcane", 0);
+
+        content.put("netherwart", 0);
+
+        content.put("brownmushroom", 0);
+
+        content.put("redmushroom", 0);
 
         return content;
     }

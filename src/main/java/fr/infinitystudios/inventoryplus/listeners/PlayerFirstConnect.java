@@ -14,12 +14,16 @@ public class PlayerFirstConnect implements Listener {
     @EventHandler
     public void FirstConnection(PlayerLoginEvent e){
         Player p = e.getPlayer();
-        if(p.hasPlayedBefore()){
+        if(!p.hasPlayedBefore()){
             FileUtils fu = new FileUtils();
             Map<String, Integer> content = new HashMap<>();
             content.put("diamond", 0);
             content.put("coal", 0);
             fu.SavePlayerConfig(p, content);
+            return;
+        }
+        if(new FileUtils().GetPlayerConfig(p) == null){
+
         }
     }
 }
