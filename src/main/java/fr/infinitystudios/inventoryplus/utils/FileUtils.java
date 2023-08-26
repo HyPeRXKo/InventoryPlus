@@ -10,12 +10,22 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class FileUtils {
 
     private static final String[] ores = {"coal", "coalpart", "copper", "rawcopper", "copperpart", "iron", "rawiron", "ironpart", "gold", "rawgold", "goldpart", "redstone", "redstonepart", "lapis", "lapispart", "diamond", "diamondpart", "emerald", "quartz", "quartzpart", "netherite", "netheritepart"};
     private static final String[] woods = {"oak", "oakpart", "spruce", "sprucepart", "birch", "birchpart", "acacia", "acaciapart", "cherry", "cherrypart", "darkoak", "darkoakpart", "jungle", "junglepart", "mangrove", "mangrovepart"};
     private static final String[] farming = {"wheat", "carrot", "potato", "beetroot", "sweetberries", "pumpkin", "melon", "sugarcane", "netherwart", "brownmushroom", "redmushroom"};
+
+    private Map<UUID, Map<String, Integer>> loadedcontent;
+
+    public void setloadedcontent(Player p, Map<String, Integer> content){
+        loadedcontent.put(p.getUniqueId(), content);
+    }
+    public Map<String, Integer> getloadedcontent(Player p){
+        return loadedcontent.get(p.getUniqueId());
+    }
 
 
     private static final InventoryPlus plugin = InventoryPlus.getPlugin();

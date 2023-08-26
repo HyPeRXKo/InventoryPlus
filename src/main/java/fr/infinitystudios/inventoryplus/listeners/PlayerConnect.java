@@ -6,13 +6,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class PlayerFirstConnect implements Listener {
+public class PlayerConnect implements Listener {
 
     @EventHandler
-    public void FirstConnection(PlayerLoginEvent e){
+    public void OnPlayerConnection(PlayerLoginEvent e){
         Player p = e.getPlayer();
         FileUtils fu = new FileUtils();
         if(!p.hasPlayedBefore()){
