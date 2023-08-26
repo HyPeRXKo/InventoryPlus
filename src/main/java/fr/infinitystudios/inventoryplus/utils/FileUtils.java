@@ -13,6 +13,11 @@ import java.util.Map;
 
 public class FileUtils {
 
+    private static final String[] ores = {"coal", "coalpart", "copper", "rawcopper", "copperpart", "iron", "rawiron", "ironpart", "gold", "rawgold", "goldpart", "redstone", "redstonepart", "lapis", "lapispart", "diamond", "diamondpart", "emerald", "quartz", "quartzpart", "netherite", "netheritepart"};
+    private static final String[] woods = {"oak", "oakpart", "spruce", "sprucepart", "birch", "birchpart", "acacia", "acaciapart", "cherry", "cherrypart", "darkoak", "darkoakpart", "jungle", "junglepart", "mangrove", "mangrovepart"};
+    private static final String[] farming = {"wheat", "carrot", "potato", "beetroot", "sweetberries", "pumpkin", "melon", "sugarcane", "netherwart", "brownmushroom", "redmushroom"};
+
+
     private static final InventoryPlus plugin = InventoryPlus.getPlugin();
 
     public FileConfiguration GetPlayerConfig(Player p) {
@@ -33,15 +38,16 @@ public class FileUtils {
         File playerdatafile = new File(plugin.getDataFolder() + "/data/", p.getUniqueId() + ".yml");
         playerdata = new YamlConfiguration();
         playerdata.set("player", p.getName());
-        PermUtils pu = new PermUtils();
-        if(pu.hasminingperm(p) || p.isOp()){
-            playerdata.set("mining.diamond", content.get("diamond"));
-            playerdata.set("mining.coal", content.get("coal"));
-            playerdata.set("mining.rawgold", content.get("rawgold"));
-            playerdata.set("mining.goldingot", content.get("gold"));
-            playerdata.set("mining.rawiron", content.get("rawiron"));
-            playerdata.set("mining.ironingot", content.get("iron"));
+        for(String i: ores){
+            playerdata.set("mining." + i, content.get(i));
         }
+        for(String i: woods){
+            playerdata.set("wood." + i, content.get(i));
+        }
+        for(String i: farming){
+            playerdata.set("farming." + i, content.get(i));
+        }
+
         try {
             playerdata.save(playerdatafile);}
         catch (IOException | IllegalArgumentException e) {
@@ -50,13 +56,16 @@ public class FileUtils {
 
     public Map<String, Integer> GetConfigContent(FileConfiguration playerfile){
         Map<String, Integer> content = new HashMap<>();
-        content.put("diamond", playerfile.getInt("mining.diamond"));
-        content.put("coal", playerfile.getInt("mining.coal"));
-        content.put("rawgold", playerfile.getInt("mining.rawgold"));
-        content.put("gold", playerfile.getInt("mining.goldingot"));
-        content.put("rawiron", playerfile.getInt("mining.rawiron"));
-        content.put("iron", playerfile.getInt("mining.iron"));
 
+        for(String i: ores){
+            content.put(i, playerfile.getInt("mining." + i));
+        }
+        for(String i: woods){
+            content.put(i, playerfile.getInt("wood." + i));
+        }
+        for(String i: farming){
+            content.put(i, playerfile.getInt("farming." + i));
+        }
 
 
         return content;
@@ -67,87 +76,21 @@ public class FileUtils {
 
         //ORES
 
-        content.put("coal", 0);
-        content.put("coalpart", 0);
-
-        content.put("copper", 0);
-        content.put("rawcopper", 0);
-        content.put("copperpart", 0);
-
-        content.put("iron", 0);
-        content.put("rawiron", 0);
-        content.put("ironpart", 0);
-
-        content.put("gold", 0);
-        content.put("rawgold", 0);
-        content.put("goldpart", 0);
-
-        content.put("redstone", 0);
-        content.put("redstonepart", 0);
-
-        content.put("lapis", 0);
-        content.put("lapispart", 0);
-
-        content.put("diamond", 0);
-        content.put("diamondpart", 0);
-
-        content.put("emerald", 0);
-
-        content.put("quartz", 0);
-        content.put("quartzpart", 0);
-
-        content.put("netherite", 0);
-        content.put("netheritepart", 0);
+        for (String i: ores) {
+            content.put(i, 0);
+        }
 
         //WOOD
 
-        content.put("oak", 0);
-        content.put("oakpart", 0);
-
-        content.put("spruce", 0);
-        content.put("sprucepart", 0);
-
-        content.put("birch", 0);
-        content.put("birchpart", 0);
-
-        content.put("acacia", 0);
-        content.put("acaciapart", 0);
-
-        content.put("cherry", 0);
-        content.put("cherrypart", 0);
-
-        content.put("darkoak", 0);
-        content.put("darkoakpart", 0);
-
-        content.put("jungle", 0);
-        content.put("junglepart", 0);
-
-        content.put("mangrove", 0);
-        content.put("mangrovepart", 0);
+        for (String i: woods) {
+            content.put(i, 0);
+        }
 
         //Farming
 
-        content.put("wheat", 0);
-
-        content.put("carrot", 0);
-
-        content.put("potato", 0);
-
-        content.put("beetroot", 0);
-
-        content.put("sweetberries", 0);
-
-        content.put("pumpkin", 0);
-
-        content.put("melon", 0);
-
-        content.put("sugarcane", 0);
-
-        content.put("netherwart", 0);
-
-        content.put("brownmushroom", 0);
-
-        content.put("redmushroom", 0);
+        for (String i: farming) {
+            content.put(i, 0);
+        }
 
         return content;
     }

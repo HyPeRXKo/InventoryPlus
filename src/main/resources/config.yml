@@ -5,10 +5,10 @@ capacity:
       tier2: 128
       tier3: 256
     wood:
-      tier1:
-      tier2:
-      tier3:
+      tier1: 64
+      tier2: 128
+      tier3: 256
     farming:
-      tier1:
-      tier2:
-      tier3:
+      tier1: 64
+      tier2: 128
+      tier3: 256
