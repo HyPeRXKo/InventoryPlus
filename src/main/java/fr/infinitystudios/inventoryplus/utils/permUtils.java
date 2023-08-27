@@ -3,7 +3,7 @@ package fr.infinitystudios.inventoryplus.utils;
 import fr.infinitystudios.inventoryplus.InventoryPlus;
 import org.bukkit.entity.Player;
 
-public class PermUtils {
+public class permUtils {
 
     private static final InventoryPlus plugin = InventoryPlus.getPlugin();
 

@@ -1,25 +1,28 @@
 package fr.infinitystudios.inventoryplus.utils;
 
 import fr.infinitystudios.inventoryplus.InventoryPlus;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
 
-public class InvUtils {
+public class invUtils {
 
     private static final InventoryPlus plugin = InventoryPlus.getPlugin();
 
     public Boolean scaninventorybackpack(Player p, String type) {
-        ItemUtils iu = new ItemUtils();
+        itemUtils iu = new itemUtils();
         if(type.equalsIgnoreCase("mining") && p.getInventory().contains(iu.ItemMiningBackpack(p))){return true;}
+        else if(type.equalsIgnoreCase("wood") && p.getInventory().contains(iu.ItemWoodBackpack(p))){return true;}
+        else if(type.equalsIgnoreCase("farming") && p.getInventory().contains(iu.ItemFarmingBackpack(p))){return true;}
         return false;
     }
 
     public Boolean scaninventorysingle(Player p, String itemstring){
-        FileUtils fu = new FileUtils();
-        Map<String, Integer> content = fu.GetConfigContent(fu.GetPlayerConfig(p));
+        fileUtils fu = new fileUtils();
+        Map<String, Integer> content = fu.getConfigContent(fu.getPlayerConfig(p));
         ItemStack item = new ItemStack(Material.AIR);
         int amount = -1;
         switch (itemstring){
@@ -61,6 +64,10 @@ public class InvUtils {
             if(amount <= 0){return true;}
         }
         return false;
+    }
+
+    public void removeiteminv(Player p, ItemStack itemstack){
+        Bukkit.getScheduler().runTaskLater(plugin, () -> p.getInventory().removeItem(itemstack), 1L);
     }
 
 

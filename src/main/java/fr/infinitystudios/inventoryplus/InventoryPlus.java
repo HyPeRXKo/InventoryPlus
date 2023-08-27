@@ -1,9 +1,10 @@
 package fr.infinitystudios.inventoryplus;
 
-import fr.infinitystudios.inventoryplus.commands.InventoryPlusCommand;
-import fr.infinitystudios.inventoryplus.listeners.GuiInteraction;
-import fr.infinitystudios.inventoryplus.listeners.PlayerConnect;
-import fr.infinitystudios.inventoryplus.listeners.PlayerLoot;
+import fr.infinitystudios.inventoryplus.commands.inventoryPlusCommand;
+import fr.infinitystudios.inventoryplus.listeners.guiInteraction;
+import fr.infinitystudios.inventoryplus.listeners.playerConnect;
+import fr.infinitystudios.inventoryplus.listeners.playerLoot;
+import fr.infinitystudios.inventoryplus.utils.fileUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -20,13 +21,23 @@ public final class InventoryPlus extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         plugin.getLogger().info("Starting");
-        getCommand("InventoryPlus").setExecutor(new InventoryPlusCommand());
-        getServer().getPluginManager().registerEvents(new PlayerLoot(), this);
-        getServer().getPluginManager().registerEvents(new GuiInteraction(), this);
-        getServer().getPluginManager().registerEvents(new PlayerConnect(), this);
+
+
+        //command
+        getCommand("InventoryPlus").setExecutor(new inventoryPlusCommand());
+
+        //listeners
+        getServer().getPluginManager().registerEvents(new playerLoot(), this);
+        getServer().getPluginManager().registerEvents(new guiInteraction(), this);
+        getServer().getPluginManager().registerEvents(new playerConnect(), this);
+
+        //configs
         getConfig().options().configuration();
         saveDefaultConfig();
         checkfolder();
+
+        //periodic save
+        new fileUtils().periodicsave();
     }
     @Override
     public void onDisable() {

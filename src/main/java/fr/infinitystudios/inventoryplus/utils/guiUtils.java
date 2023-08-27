@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-public class GuiUtils {
+public class guiUtils {
 
     public String cc(String string){
         return ChatColor.translateAlternateColorCodes('&', string);}
@@ -13,7 +13,7 @@ public class GuiUtils {
 
     public Inventory getMiningGUItest(Player p){
 
-        ItemUtils iu = new ItemUtils();
+        itemUtils iu = new itemUtils();
 
         Inventory gui = Bukkit.createInventory(null, 27, cc("&6Mining Backpack"));
 
