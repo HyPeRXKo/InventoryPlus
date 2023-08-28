@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class itemUtils {
 
@@ -156,6 +157,22 @@ public class itemUtils {
 
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public ItemStack exitBarrier(){
+        ItemStack item = new ItemStack(Material.BARRIER);
+        ItemMeta meta = item.getItemMeta();
+        List<String> lore = new ArrayList<>();
+        meta.setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setDisplayName(cc("&4Exit"));
+        lore.add(cc("&cClick to exit"));
 
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -901,5 +918,156 @@ public class itemUtils {
 
         return coal;
     }
+
+    //Farming
+
+    public ItemStack itemGuiWheat(Player p){
+        fileUtils fu = new fileUtils();
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.WHEAT);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fu.getloadedcontent(p).get("wheat");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&eWheat"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiPotato(Player p){
+        fileUtils fu = new fileUtils();
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.POTATO);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fu.getloadedcontent(p).get("potato");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&ePotato"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiCarrot(Player p){
+        fileUtils fu = new fileUtils();
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.CARROT);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fu.getloadedcontent(p).get("carrot");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&eCarrot"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiBeetroot(Player p){
+        fileUtils fu = new fileUtils();
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.BEETROOT);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fu.getloadedcontent(p).get("beetroot");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&eBeetroot"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiSweetberries(Player p){
+        fileUtils fu = new fileUtils();
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.SWEET_BERRIES);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fu.getloadedcontent(p).get("sweetberries");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&eSweet Berries"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiPumpkin(Player p){
+        fileUtils fu = new fileUtils();
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.PUMPKIN);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fu.getloadedcontent(p).get("pumpkin");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&ePumpkin"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+
+
+
 
 }

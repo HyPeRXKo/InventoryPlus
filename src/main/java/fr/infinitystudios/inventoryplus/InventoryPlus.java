@@ -4,6 +4,7 @@ import fr.infinitystudios.inventoryplus.commands.inventoryPlusCommand;
 import fr.infinitystudios.inventoryplus.listeners.guiInteraction;
 import fr.infinitystudios.inventoryplus.listeners.playerConnect;
 import fr.infinitystudios.inventoryplus.listeners.playerLoot;
+import fr.infinitystudios.inventoryplus.listeners.rightClickListener;
 import fr.infinitystudios.inventoryplus.utils.fileUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +31,7 @@ public final class InventoryPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new playerLoot(), this);
         getServer().getPluginManager().registerEvents(new guiInteraction(), this);
         getServer().getPluginManager().registerEvents(new playerConnect(), this);
+        getServer().getPluginManager().registerEvents(new rightClickListener(), this);
 
         //configs
         getConfig().options().configuration();
