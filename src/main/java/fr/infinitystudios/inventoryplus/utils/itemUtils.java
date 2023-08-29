@@ -82,6 +82,68 @@ public class itemUtils {
 
         return item;
     }
+    public ItemStack Wood(int modeldata){
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add(cc("&8Put 4 in a crafting table"));
+        lore.add(cc("&8to get a log"));
+
+
+        switch (modeldata) {
+            case 2:{
+                meta.setCustomModelData(2);
+                meta.setDisplayName("Oak Log Parts");
+                break;
+            }
+            case 3:{
+                meta.setCustomModelData(3);
+                meta.setDisplayName("Spruce Log Parts");
+                break;
+            }
+            case 4:{
+                meta.setCustomModelData(4);
+                meta.setDisplayName("Birch Log Parts");
+                break;
+            }
+            case 5:{
+                meta.setCustomModelData(5);
+                meta.setDisplayName("Acacia Log Parts");
+                break;
+            }
+            case 6:{
+                meta.setCustomModelData(6);
+                meta.setDisplayName("Cherry Log Parts");
+                break;
+            }
+            case 7:{
+                meta.setCustomModelData(7);
+                meta.setDisplayName("Dark Oak Log Parts");
+                break;
+            }
+            case 8:{
+                meta.setCustomModelData(8);
+                meta.setDisplayName("Jungle Log Parts");
+                break;
+            }
+            case 9:{
+                meta.setCustomModelData(9);
+                meta.setDisplayName("Mangrove Log Parts");
+                break;
+            }
+            default:{
+                return null;
+            }
+        }
+
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
 
     public ItemStack Ores(Material material){
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
@@ -165,6 +227,89 @@ public class itemUtils {
 
         return item;
     }
+    public ItemStack Ores(int modeldata){
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        ArrayList<String> lore = new ArrayList<>();
+
+        switch (modeldata){
+            case 14:{
+                meta.setCustomModelData(14);
+                meta.setDisplayName("Coal Parts");
+                lore.add(cc("&8Put 4 in a crafting table"));
+                lore.add(cc("&8to get a coal"));
+                break;
+            }
+            case 11:{
+                meta.setCustomModelData(11);
+                meta.setDisplayName("Raw Iron Parts");
+                lore.add(cc("&8Put 3 in a crafting table"));
+                lore.add(cc("&8to get a raw iron"));
+                break;
+            }
+            case 13:{
+                meta.setCustomModelData(13);
+                meta.setDisplayName("Raw Copper Parts");
+                lore.add(cc("&8Put 3 in a crafting table"));
+                lore.add(cc("&8to get a raw copper"));
+                break;
+            }
+            case 12:{
+                meta.setCustomModelData(12);
+                meta.setDisplayName("Raw Gold Parts");
+                lore.add(cc("&8Put 3 in a crafting table"));
+                lore.add(cc("&8to get a raw gold"));
+                break;
+            }
+            case 17:{
+                meta.setCustomModelData(17);
+                meta.setDisplayName("Diamond Parts");
+                lore.add(cc("&8Put 5 in a crafting table"));
+                lore.add(cc("&8to get a diamond"));
+                break;
+            }
+            case 15:{
+                meta.setCustomModelData(15);
+                meta.setDisplayName("Lapis Lazuli Parts");
+                lore.add(cc("&8Put 6 in a crafting table"));
+                lore.add(cc("&8to get a lapis lazuli"));
+                break;
+            }
+            case 16:{
+                meta.setCustomModelData(16);
+                meta.setDisplayName("Redstone Parts");
+                lore.add(cc("&8Put 2 in a crafting table"));
+                lore.add(cc("&8to get a redstone dust"));
+                break;
+            }
+            case 18:{
+                meta.setCustomModelData(18);
+                meta.setDisplayName("Quartz Parts");
+                lore.add(cc("&8Put 2 in a crafting table"));
+                lore.add(cc("&8to get a quartz"));
+                break;
+            }
+            case 19:{
+                meta.setCustomModelData(19);
+                meta.setDisplayName("Ancient Debris Parts");
+                lore.add(cc("&8Put 3 in a crafting table"));
+                lore.add(cc("&8to get a ancient debris"));
+                break;
+            }
+            default:{
+                return null;
+            }
+        }
+
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
 
     public ItemStack exitBarrier(){
         ItemStack item = new ItemStack(Material.BARRIER);
