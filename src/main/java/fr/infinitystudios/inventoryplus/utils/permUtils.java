@@ -24,7 +24,13 @@ public class permUtils {
     public int miningpermstacklmimit(Player p){
         if(p.hasPermission("inventoryplus.mining.1")){return plugin.getConfig().getInt("capacity.mining.tier1");}
         else if(p.hasPermission("inventoryplus.mining.2")){return plugin.getConfig().getInt("capacity.mining.tier2");}
-        else if(p.hasPermission("inventoryplus.mining.2")){return plugin.getConfig().getInt("capacity.mining.tier3");}
+        else if(p.hasPermission("inventoryplus.mining.3")){return plugin.getConfig().getInt("capacity.mining.tier3");}
+        else {return 0;}
+    }
+    public int miningpermstacklmimit(int level){
+        if(level == 1){return plugin.getConfig().getInt("capacity.mining.tier1");}
+        else if(level == 2){return plugin.getConfig().getInt("capacity.mining.tier2");}
+        else if(level == 3){return plugin.getConfig().getInt("capacity.mining.tier3");}
         else {return 0;}
     }
 
@@ -44,7 +50,14 @@ public class permUtils {
     public int woodpermstacklmimit(Player p){
         if(p.hasPermission("inventoryplus.wood.1")){return plugin.getConfig().getInt("capacity.wood.tier1");}
         else if(p.hasPermission("inventoryplus.wood.2")){return plugin.getConfig().getInt("capacity.wood.tier2");}
-        else if(p.hasPermission("inventoryplus.wood.2")){return plugin.getConfig().getInt("capacity.wood.tier3");}
+        else if(p.hasPermission("inventoryplus.wood.3")){return plugin.getConfig().getInt("capacity.wood.tier3");}
+        else {return 0;}
+    }
+
+    public int woodpermstacklmimit(int level){
+        if(level == 1){return plugin.getConfig().getInt("capacity.wood.tier1");}
+        else if(level == 2){return plugin.getConfig().getInt("capacity.wood.tier2");}
+        else if(level == 3){return plugin.getConfig().getInt("capacity.wood.tier3");}
         else {return 0;}
     }
 
@@ -65,7 +78,14 @@ public class permUtils {
     public int farmingpermstacklmimit(Player p){
         if(p.hasPermission("inventoryplus.farming.1")){return plugin.getConfig().getInt("capacity.farming.tier1");}
         else if(p.hasPermission("inventoryplus.farming.2")){return plugin.getConfig().getInt("capacity.farming.tier2");}
-        else if(p.hasPermission("inventoryplus.farming.2")){return plugin.getConfig().getInt("capacity.farming.tier3");}
+        else if(p.hasPermission("inventoryplus.farming.3")){return plugin.getConfig().getInt("capacity.farming.tier3");}
+        else {return 0;}
+    }
+
+    public int farmingpermstacklmimit(int level){
+        if(level == 1){return plugin.getConfig().getInt("capacity.farming.tier1");}
+        else if(level == 2){return plugin.getConfig().getInt("capacity.farming.tier2");}
+        else if(level == 3){return plugin.getConfig().getInt("capacity.farming.tier3");}
         else {return 0;}
     }
 

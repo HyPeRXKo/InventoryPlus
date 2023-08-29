@@ -32,7 +32,7 @@ public class playerConnect implements Listener {
         Player p = e.getPlayer();
         fileUtils fu = new fileUtils();
 
-        fu.savePlayerConfig(p, fileUtils.getloadedcontent(p));
+        fu.savePlayerConfig(p, fileUtils.getloadedcontentPlayer(p));
         fileUtils.deleteloadedcontent(p);
     }
 

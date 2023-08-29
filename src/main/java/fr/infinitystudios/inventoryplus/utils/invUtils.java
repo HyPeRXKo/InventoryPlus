@@ -3,8 +3,10 @@ package fr.infinitystudios.inventoryplus.utils;
 import fr.infinitystudios.inventoryplus.InventoryPlus;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Map;
 
@@ -19,10 +21,49 @@ public class invUtils {
         else if(type.equalsIgnoreCase("farming") && p.getInventory().contains(iu.ItemFarmingBackpack(p))){return true;}
         return false;
     }
+    public int tierinventorybackpack(Player p, String type){
+        itemUtils iu = new itemUtils();
+        if(type.equalsIgnoreCase("mining") && p.getInventory().contains(iu.ItemMiningBackpack(p))){
+            for (int slot = 0; slot < p.getInventory().getSize(); slot++) {
+                ItemStack item = p.getInventory().getItem(slot);
+
+                if(item != null && item.isSimilar(iu.ItemMiningBackpack(p))){
+                    if(item.hasItemMeta()
+                    && item.getItemMeta().getPersistentDataContainer().has(new NamespacedKey(plugin, "tier"), PersistentDataType.INTEGER)){
+                        return new permUtils().miningpermstacklmimit(item.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(plugin, "tier"), PersistentDataType.INTEGER));
+                    }
+                }
+            }
+        }
+        else if(type.equalsIgnoreCase("wood") && p.getInventory().contains(iu.ItemWoodBackpack(p))){
+            for (int slot = 0; slot < p.getInventory().getSize(); slot++) {
+                ItemStack item = p.getInventory().getItem(slot);
+
+                if(item != null && item.isSimilar(iu.ItemWoodBackpack(p))){
+                    if(item.hasItemMeta()
+                            && item.getItemMeta().getPersistentDataContainer().has(new NamespacedKey(plugin, "tier"), PersistentDataType.INTEGER)){
+                        return new permUtils().woodpermstacklmimit(item.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(plugin, "tier"), PersistentDataType.INTEGER));
+                    }
+                }
+            }
+        }
+        else if(type.equalsIgnoreCase("farming") && p.getInventory().contains(iu.ItemFarmingBackpack(p))){
+            for (int slot = 0; slot < p.getInventory().getSize(); slot++) {
+                ItemStack item = p.getInventory().getItem(slot);
+
+                if(item != null && item.isSimilar(iu.ItemFarmingBackpack(p))){
+                    if(item.hasItemMeta()
+                            && item.getItemMeta().getPersistentDataContainer().has(new NamespacedKey(plugin, "tier"), PersistentDataType.INTEGER)){
+                        return new permUtils().farmingpermstacklmimit(item.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(plugin, "tier"), PersistentDataType.INTEGER));
+                    }
+                }
+            }
+        }
+        return 0;
+    }
 
     public Boolean scaninventorysingle(Player p, String itemstring){
-        fileUtils fu = new fileUtils();
-        Map<String, Integer> content = fu.getConfigContent(fu.getPlayerConfig(p));
+        Map<String, Integer> content = fileUtils.getloadedcontentPlayer(p);
         ItemStack item = new ItemStack(Material.AIR);
         int amount = -1;
         switch (itemstring){

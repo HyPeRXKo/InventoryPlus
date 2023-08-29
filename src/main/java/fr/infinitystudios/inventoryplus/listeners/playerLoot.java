@@ -119,31 +119,28 @@ public class playerLoot implements Listener {
                 if(wooditems.contains(itemtype)){
                     invUtils iu = new invUtils();
                     if(iu.scaninventorybackpack(p, "wood")){
-                        fileUtils fu = new fileUtils();
-                        permUtils pu = new permUtils();
-                        int newint = fu.getmaterialint(p, matlist.get(itemtype)) + e.getItem().getItemStack().getAmount();
-                        if(newint > pu.woodpermstacklmimit(p)) {return;}
-                        fu.setmaterialint(p, matlist.get(itemtype), newint);
+                        int backpacklimit = iu.tierinventorybackpack(p, "wood");
+                        int newint = fileUtils.getmaterialint(p, matlist.get(itemtype)) + e.getItem().getItemStack().getAmount();
+                        if(newint > backpacklimit) {return;}
+                        fileUtils.setmaterialint(p, matlist.get(itemtype), newint);
                         iu.removeiteminv(p,e.getItem().getItemStack());                    }
                 }
                 else if(miningitems.contains(itemtype)){
                     invUtils iu = new invUtils();
                     if(iu.scaninventorybackpack(p, "mining")){
-                        fileUtils fu = new fileUtils();
-                        permUtils pu = new permUtils();
-                        int newint = fu.getmaterialint(p, matlist.get(itemtype)) + e.getItem().getItemStack().getAmount();
-                        if(newint > pu.woodpermstacklmimit(p)) {return;}
-                        fu.setmaterialint(p, matlist.get(itemtype), newint);
+                        int backpacklimit = iu.tierinventorybackpack(p, "mining");
+                        int newint = fileUtils.getmaterialint(p, matlist.get(itemtype)) + e.getItem().getItemStack().getAmount();
+                        if(newint > backpacklimit) {return;}
+                        fileUtils.setmaterialint(p, matlist.get(itemtype), newint);
                         iu.removeiteminv(p,e.getItem().getItemStack());                    }
                 }
                 else if(farmingitems.contains(itemtype)){
                     invUtils iu = new invUtils();
                     if(iu.scaninventorybackpack(p, "farming")){
-                        fileUtils fu = new fileUtils();
-                        permUtils pu = new permUtils();
-                        int newint = fu.getmaterialint(p, matlist.get(itemtype)) + e.getItem().getItemStack().getAmount();
-                        if(newint > pu.woodpermstacklmimit(p)) {return;}
-                        fu.setmaterialint(p, matlist.get(itemtype), newint);
+                        int backpacklimit = iu.tierinventorybackpack(p, "farming");
+                        int newint = fileUtils.getmaterialint(p, matlist.get(itemtype)) + e.getItem().getItemStack().getAmount();
+                        if(newint > backpacklimit) {return;}
+                        fileUtils.setmaterialint(p, matlist.get(itemtype), newint);
                         iu.removeiteminv(p,e.getItem().getItemStack());
                     }
                 }
@@ -154,21 +151,20 @@ public class playerLoot implements Listener {
                         if(modeldata >= 2 && modeldata <= 9){
                             invUtils iu = new invUtils();
                             if(iu.scaninventorybackpack(p, "wood")){
-                                fileUtils fu = new fileUtils();
-                                permUtils pu = new permUtils();
-                                int newint = fu.getmaterialint(p, fireworklist.get(modeldata)) + e.getItem().getItemStack().getAmount();
-                                if(newint > pu.woodpermstacklmimit(p)) {return;}
-                                fu.setmaterialint(p, fireworklist.get(modeldata), newint);
+                                int backpacklimit = iu.tierinventorybackpack(p, "wood");
+                                int newint = fileUtils.getmaterialint(p, fireworklist.get(modeldata)) + e.getItem().getItemStack().getAmount();
+                                if(newint > backpacklimit) {return;}
+                                fileUtils.setmaterialint(p, fireworklist.get(modeldata), newint);
                                 iu.removeiteminv(p,e.getItem().getItemStack());                    }
                         }
                         else if(modeldata >= 11 && modeldata <= 19){
                             invUtils iu = new invUtils();
                             if(iu.scaninventorybackpack(p, "mining")){
-                                fileUtils fu = new fileUtils();
+                                int backpacklimit = iu.tierinventorybackpack(p, "mining");
                                 permUtils pu = new permUtils();
-                                int newint = fu.getmaterialint(p, fireworklist.get(modeldata)) + e.getItem().getItemStack().getAmount();
-                                if(newint > pu.woodpermstacklmimit(p)) {return;}
-                                fu.setmaterialint(p, fireworklist.get(modeldata), newint);
+                                int newint = fileUtils.getmaterialint(p, fireworklist.get(modeldata)) + e.getItem().getItemStack().getAmount();
+                                if(newint > backpacklimit) {return;}
+                                fileUtils.setmaterialint(p, fireworklist.get(modeldata), newint);
                                 iu.removeiteminv(p,e.getItem().getItemStack());
                             }
                         }

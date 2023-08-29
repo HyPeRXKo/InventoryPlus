@@ -10,6 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -25,7 +26,13 @@ public class fileUtils {
     //RAM BASED CONTENTS
     private static Map<UUID, Map<String, Integer>> loadedcontent = new HashMap<>();
 
-    public static Map<String, Integer> getloadedcontent(Player p){
+    public static Map<UUID, Map<String, Integer>> getloadedcontent(){return loadedcontent;}
+
+    public static boolean playerContentExist(Player p){
+        return loadedcontent.containsKey(p.getUniqueId());
+    }
+
+    public static Map<String, Integer> getloadedcontentPlayer(Player p){
         return loadedcontent.get(p.getUniqueId());
     }
 
@@ -38,20 +45,49 @@ public class fileUtils {
     }
 
     public static void setmaterialint(Player p, String material, int amount){
-        Map<String, Integer> content = getloadedcontent(p);
+        Map<String, Integer> content = getloadedcontentPlayer(p);
         if(!content.containsKey(material)){return;}
         content.put(material, amount);
         setloadedcontent(p, content);
     }
 
     public static int getmaterialint(Player p, String material){
-        Map<String, Integer> content = getloadedcontent(p);
+        Map<String, Integer> content = getloadedcontentPlayer(p);
         if(!content.containsKey(material)){return -1;}
         return content.get(material);
     }
 
 
     //FILE METHODS
+
+    public void updateBackups(){
+        // Set your plugin and folders
+        Path pluginFolder = plugin.getDataFolder().toPath();
+        Path dataFolder = pluginFolder.resolve("data");
+        Path backupFolder = dataFolder.resolve("backup");
+
+        // Loop through each file in the data folder
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dataFolder)) {
+            for (Path dataFile : stream) {
+                if (Files.isRegularFile(dataFile)) {
+                    String fileName = dataFile.getFileName().toString();
+                    Path backupFile = backupFolder.resolve(fileName);
+
+                    try {
+                        // Copy the file
+                        Files.copy(dataFile, backupFile, StandardCopyOption.REPLACE_EXISTING);
+                        System.out.println("File copied: " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error copying file: " + fileName);
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error iterating through data folder.");
+            e.printStackTrace();
+        }
+    }
 
     public FileConfiguration getPlayerConfig(Player p) {
         FileConfiguration playerdata;
@@ -131,6 +167,7 @@ public class fileUtils {
             public void run() {
                 Map<UUID, Map<String, Integer>> contentsavedasync = loadedcontent;
                 contentsavedasync.forEach((k, v) -> savePlayerConfig(k, v));
+                plugin.getLogger().info("Periodic save done.");
             }
         }.runTaskTimer(plugin, 6000, 6000);
     }
