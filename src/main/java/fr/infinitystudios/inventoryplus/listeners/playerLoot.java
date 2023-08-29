@@ -4,8 +4,6 @@ import fr.infinitystudios.inventoryplus.InventoryPlus;
 import fr.infinitystudios.inventoryplus.utils.fileUtils;
 import fr.infinitystudios.inventoryplus.utils.invUtils;
 import fr.infinitystudios.inventoryplus.utils.itemUtils;
-import fr.infinitystudios.inventoryplus.utils.permUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -13,7 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,9 +23,9 @@ public class playerLoot implements Listener {
 
     private static final Map<Material, String> matlist = new HashMap<>();
     private static final Map<Integer, String> fireworklist = new HashMap<>();
-    ArrayList<Material> miningitems = new ArrayList<>();
-    ArrayList<Material> wooditems = new ArrayList<>();
-    ArrayList<Material> farmingitems = new ArrayList<>();
+    private static final ArrayList<Material> miningitems = new ArrayList<>();
+    private static final ArrayList<Material> wooditems = new ArrayList<>();
+    private static final ArrayList<Material> farmingitems = new ArrayList<>();
 
 
 
@@ -161,7 +158,6 @@ public class playerLoot implements Listener {
                             invUtils iu = new invUtils();
                             if(iu.scaninventorybackpack(p, "mining")){
                                 int backpacklimit = iu.tierinventorybackpack(p, "mining");
-                                permUtils pu = new permUtils();
                                 int newint = fileUtils.getmaterialint(p, fireworklist.get(modeldata)) + e.getItem().getItemStack().getAmount();
                                 if(newint > backpacklimit) {return;}
                                 fileUtils.setmaterialint(p, fireworklist.get(modeldata), newint);

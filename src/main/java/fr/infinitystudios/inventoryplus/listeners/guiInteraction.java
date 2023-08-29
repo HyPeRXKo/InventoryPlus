@@ -22,7 +22,7 @@ public class guiInteraction implements Listener {
 
     @EventHandler
     public void GuiInteractionEvent(InventoryClickEvent e){
-        if(!e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Mining Backpack"))) {return;}
+        //if(!e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Mining Backpack"))) {return;}
 
 
 
@@ -33,6 +33,20 @@ public class guiInteraction implements Listener {
         guiUtils gu = new guiUtils();
         permUtils pu = new permUtils();
         if(e.getCurrentItem() == null){return;}
+        if(e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Wood Backpack"))){
+            if(e.getClickedInventory() == e.getView().getTopInventory()){
+                //Click sur l'inventaire du backpack
+                switch (e.getCurrentItem().getType()){
+                    case FIREWORK_STAR:{
+
+                    }
+
+                }
+            }
+            else if(e.getClickedInventory() == e.getView().getBottomInventory()){}
+        }
+        if(e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Mining Backpack"))){}
+        if(e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Farming Backpack"))){}
         if(e.getClickedInventory() == e.getView().getBottomInventory()){
             plugin.getLogger().severe("Click en bas");
             switch (e.getCurrentItem().getType()){
@@ -114,7 +128,7 @@ public class guiInteraction implements Listener {
             plugin.getLogger().severe("click en haut");
             switch (e.getCurrentItem().getType()) {
                 case DIAMOND: {
-                    if (iu.scaninventorysingle(p, "diamond")) {
+                    if (iu.scaninventorysimple(p, "diamond")) {
                         Map<String, Integer> content = fu.getConfigContent(fu.getPlayerConfig(p));
                         ItemStack diamond = new ItemStack(Material.DIAMOND, content.get("diamond"));
                         p.getInventory().addItem(diamond);
@@ -125,7 +139,7 @@ public class guiInteraction implements Listener {
                     }
                 }
                 case COAL: {
-                    if (iu.scaninventorysingle(p, "coal")) {
+                    if (iu.scaninventorysimple(p, "coal")) {
                         Map<String, Integer> content = fu.getConfigContent(fu.getPlayerConfig(p));
                         ItemStack coal = new ItemStack(Material.COAL, content.get("coal"));
                         p.getInventory().addItem(coal);
@@ -136,7 +150,7 @@ public class guiInteraction implements Listener {
                     }
                 }
                 case RAW_GOLD: {
-                    if (iu.scaninventorysingle(p, "rawgold")) {
+                    if (iu.scaninventorysimple(p, "rawgold")) {
                         Map<String, Integer> content = fu.getConfigContent(fu.getPlayerConfig(p));
                         ItemStack rawgold = new ItemStack(Material.RAW_GOLD, content.get("rawgold"));
                         p.getInventory().addItem(rawgold);
@@ -147,7 +161,7 @@ public class guiInteraction implements Listener {
                     }
                 }
                 case RAW_IRON: {
-                    if (iu.scaninventorysingle(p, "rawiron")) {
+                    if (iu.scaninventorysimple(p, "rawiron")) {
                         Map<String, Integer> content = fu.getConfigContent(fu.getPlayerConfig(p));
                         ItemStack rawiron = new ItemStack(Material.RAW_IRON, content.get("rawiron"));
                         p.getInventory().addItem(rawiron);
@@ -158,7 +172,7 @@ public class guiInteraction implements Listener {
                     }
                 }
                 case GOLD_INGOT: {
-                    if (iu.scaninventorysingle(p, "gold")) {
+                    if (iu.scaninventorysimple(p, "gold")) {
                         Map<String, Integer> content = fu.getConfigContent(fu.getPlayerConfig(p));
                         ItemStack gold = new ItemStack(Material.GOLD_INGOT, content.get("gold"));
                         p.getInventory().addItem(gold);
@@ -169,7 +183,7 @@ public class guiInteraction implements Listener {
                     }
                 }
                 case IRON_INGOT: {
-                    if (iu.scaninventorysingle(p, "iron")) {
+                    if (iu.scaninventorysimple(p, "iron")) {
                         Map<String, Integer> content = fu.getConfigContent(fu.getPlayerConfig(p));
                         ItemStack iron = new ItemStack(Material.IRON_INGOT, content.get("iron"));
                         p.getInventory().addItem(iron);
