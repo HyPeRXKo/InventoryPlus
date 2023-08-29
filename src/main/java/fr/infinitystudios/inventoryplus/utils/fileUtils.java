@@ -23,28 +23,28 @@ public class fileUtils {
 
 
     //RAM BASED CONTENTS
-    private Map<UUID, Map<String, Integer>> loadedcontent;
+    private static Map<UUID, Map<String, Integer>> loadedcontent = new HashMap<>();
 
-    public Map<String, Integer> getloadedcontent(Player p){
+    public static Map<String, Integer> getloadedcontent(Player p){
         return loadedcontent.get(p.getUniqueId());
     }
 
-    public void setloadedcontent(Player p, Map<String, Integer> content){
+    public static void setloadedcontent(Player p, Map<String, Integer> content){
         loadedcontent.put(p.getUniqueId(), content);
     }
 
-    public void deleteloadedcontent(Player p){
+    public static void deleteloadedcontent(Player p){
         loadedcontent.remove(p.getUniqueId());
     }
 
-    public void setmaterialint(Player p, String material, int amount){
+    public static void setmaterialint(Player p, String material, int amount){
         Map<String, Integer> content = getloadedcontent(p);
         if(!content.containsKey(material)){return;}
         content.put(material, amount);
         setloadedcontent(p, content);
     }
 
-    public int getmaterialint(Player p, String material){
+    public static int getmaterialint(Player p, String material){
         Map<String, Integer> content = getloadedcontent(p);
         if(!content.containsKey(material)){return -1;}
         return content.get(material);

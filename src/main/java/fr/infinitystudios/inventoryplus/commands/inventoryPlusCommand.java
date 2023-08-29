@@ -15,12 +15,17 @@ public class inventoryPlusCommand implements TabExecutor {
         String temp;
         if(sender instanceof Player) {
             Player p = (Player) sender;
-            if (args.length > 0 && args[0].equalsIgnoreCase("givebackpack")) {
+            if (args.length > 0 && args[0].equalsIgnoreCase("givebackpack1")) {
+                itemUtils iu = new itemUtils();
+                p.getInventory().addItem(iu.ItemWoodBackpack(p));
+            }
+            else if (args.length > 0 && args[0].equalsIgnoreCase("givebackpack2")) {
                 itemUtils iu = new itemUtils();
                 p.getInventory().addItem(iu.ItemMiningBackpack(p));
-            } else {
-                guiUtils gu = new guiUtils();
-                p.openInventory(gu.getMiningGUItest(p));
+            }
+            else if (args.length > 0 && args[0].equalsIgnoreCase("givebackpack3")) {
+                itemUtils iu = new itemUtils();
+                p.getInventory().addItem(iu.ItemFarmingBackpack(p));
             }
         }
         return true;

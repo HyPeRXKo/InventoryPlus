@@ -21,11 +21,12 @@ public class rightClickListener implements Listener {
                         return;
                     }
                     else if(e.getItem().getItemMeta().getCustomModelData() == 151){
-                        p.openInventory(new guiUtils().getMiningGUItest(p));
+                        p.openInventory(new guiUtils().getMiningBackpack(p));
                         return;
                     }
                     else if(e.getItem().getItemMeta().getCustomModelData() == 152){
-                        //openinvfarming
+                        p.openInventory(new guiUtils().getFarmingBackpack(p));
+                        return;
                     }
                 }
             }

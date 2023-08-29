@@ -59,7 +59,7 @@ public class playerLoot implements Listener {
             matlist.put(Material.BEETROOT, "beetroot");
             matlist.put(Material.SWEET_BERRIES, "sweetberries");
             matlist.put(Material.PUMPKIN, "pumpkin");
-            matlist.put(Material.MELON, "melon");
+            matlist.put(Material.MELON_SLICE, "melon");
             matlist.put(Material.SUGAR_CANE, "sugarcane");
             matlist.put(Material.RED_MUSHROOM, "redmushroom");
             matlist.put(Material.BROWN_MUSHROOM, "brownmushroom");
@@ -94,7 +94,7 @@ public class playerLoot implements Listener {
             farmingitems.add(Material.BEETROOT);
             farmingitems.add(Material.SWEET_BERRIES);
             farmingitems.add(Material.PUMPKIN);
-            farmingitems.add(Material.MELON);
+            farmingitems.add(Material.MELON_SLICE);
             farmingitems.add(Material.SUGAR_CANE);
             farmingitems.add(Material.RED_MUSHROOM);
             farmingitems.add(Material.BROWN_MUSHROOM);
@@ -106,6 +106,7 @@ public class playerLoot implements Listener {
                 fireworklist.put(iu.Wood(mat).getItemMeta().getCustomModelData(), matlist.get(mat) + "part");
             }
             for (Material mat: miningitems) {
+                if(mat == Material.EMERALD){continue;}
                 fireworklist.put(iu.Ores(mat).getItemMeta().getCustomModelData(), matlist.get(mat) + "part");
             }
         }

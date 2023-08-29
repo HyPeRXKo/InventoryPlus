@@ -44,7 +44,7 @@ public class guiInteraction implements Listener {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         content.put("diamond", newamount);
                         fu.savePlayerConfig(p, content);
-                        p.openInventory(gu.getMiningGUItest(p));
+                        p.openInventory(gu.getMiningBackpack(p));
                         break;
                     }
                 }
@@ -56,7 +56,7 @@ public class guiInteraction implements Listener {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         content.put("coal", newamount);
                         fu.savePlayerConfig(p, content);
-                        p.openInventory(gu.getMiningGUItest(p));
+                        p.openInventory(gu.getMiningBackpack(p));
                         break;
                     }
                 }
@@ -68,7 +68,7 @@ public class guiInteraction implements Listener {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         content.put("rawgold", newamount);
                         fu.savePlayerConfig(p, content);
-                        p.openInventory(gu.getMiningGUItest(p));
+                        p.openInventory(gu.getMiningBackpack(p));
                         break;
                     }
                 }
@@ -80,7 +80,7 @@ public class guiInteraction implements Listener {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         content.put("rawiron", newamount);
                         fu.savePlayerConfig(p, content);
-                        p.openInventory(gu.getMiningGUItest(p));
+                        p.openInventory(gu.getMiningBackpack(p));
                         break;
                     }
                 }
@@ -92,7 +92,7 @@ public class guiInteraction implements Listener {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         content.put("gold", newamount);
                         fu.savePlayerConfig(p, content);
-                        p.openInventory(gu.getMiningGUItest(p));
+                        p.openInventory(gu.getMiningBackpack(p));
                         break;
                     }
                 }
@@ -104,7 +104,7 @@ public class guiInteraction implements Listener {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         content.put("iron", newamount);
                         fu.savePlayerConfig(p, content);
-                        p.openInventory(gu.getMiningGUItest(p));
+                        p.openInventory(gu.getMiningBackpack(p));
                         break;
                     }
                 }

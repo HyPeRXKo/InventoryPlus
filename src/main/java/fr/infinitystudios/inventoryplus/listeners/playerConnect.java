@@ -15,16 +15,16 @@ public class playerConnect implements Listener {
         fileUtils fu = new fileUtils();
         if(!p.hasPlayedBefore()){
             fu.savePlayerConfig(p, fu.emptyContent());
-            fu.setloadedcontent(p, fu.emptyContent());
+            fileUtils.setloadedcontent(p, fu.emptyContent());
             return;
         }
         if(fu.getPlayerConfig(p) == null){
             fu.savePlayerConfig(p, fu.emptyContent());
-            fu.setloadedcontent(p, fu.emptyContent());
+            fileUtils.setloadedcontent(p, fu.emptyContent());
             return;
         }
 
-        fu.setloadedcontent(p, fu.getConfigContent(fu.getPlayerConfig(p)));
+        fileUtils.setloadedcontent(p, fu.getConfigContent(fu.getPlayerConfig(p)));
     }
 
     @EventHandler
@@ -32,8 +32,8 @@ public class playerConnect implements Listener {
         Player p = e.getPlayer();
         fileUtils fu = new fileUtils();
 
-        fu.savePlayerConfig(p, fu.getloadedcontent(p));
-        fu.deleteloadedcontent(p);
+        fu.savePlayerConfig(p, fileUtils.getloadedcontent(p));
+        fileUtils.deleteloadedcontent(p);
     }
 
 

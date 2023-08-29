@@ -11,7 +11,7 @@ public class guiUtils {
         return ChatColor.translateAlternateColorCodes('&', string);}
 
 
-    public Inventory getMiningGUItest(Player p){
+    public Inventory getMiningBackpack(Player p){
 
         itemUtils iu = new itemUtils();
 
@@ -30,7 +30,7 @@ public class guiUtils {
 
     public Inventory getWoodBackpack(Player p){
         itemUtils iu = new itemUtils();
-        Inventory gui = Bukkit.createInventory(null, 36, cc("&Wood Backpack"));
+        Inventory gui = Bukkit.createInventory(null, 36, cc("&6Wood Backpack"));
 
         gui.setItem(2, iu.itemGuiOak(p));
         gui.setItem(11, iu.itemGuiOakPart(p));
@@ -61,6 +61,29 @@ public class guiUtils {
         return gui;
     }
 
+    public Inventory getFarmingBackpack(Player p){
+        itemUtils iu = new itemUtils();
+        Inventory gui = Bukkit.createInventory(null, 27, cc("&6Farming Backpack"));
+
+        gui.setItem(2, iu.itemGuiWheat(p));
+        gui.setItem(3, iu.itemGuiCarrot(p));
+        gui.setItem(4, iu.itemGuiPotato(p));
+        gui.setItem(5, iu.itemGuiBeetroot(p));
+        gui.setItem(6, iu.itemGuiSweetberries(p));
+
+        gui.setItem(11, iu.itemGuiMelon(p));
+        gui.setItem(12, iu.itemGuiPumpkin(p));
+        gui.setItem(13, iu.itemGuiBrownMushroom(p));
+        gui.setItem(14, iu.itemGuiRedMushroom(p));
+        gui.setItem(15, iu.itemGuiNetherwart(p));
+
+        gui.setItem(22, iu.itemGuiSugarcane(p));
+
+        gui.setItem(26, iu.exitBarrier());
+
+
+        return gui;
+    }
 
 
 }

@@ -4,7 +4,6 @@ import com.sun.tools.javac.jvm.Items;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -18,7 +17,7 @@ public class itemUtils {
     public String cc(String string){
         return ChatColor.translateAlternateColorCodes('&', string);}
 
-    public ItemStack Wood(Material material){
+    public ItemStack Wood(Material mat){
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
@@ -26,7 +25,7 @@ public class itemUtils {
         lore.add(cc("&8to get a log"));
 
 
-        switch (material) {
+        switch (mat) {
             case OAK_LOG:{
                 meta.setCustomModelData(2);
                 meta.setDisplayName("Oak Log Parts");
@@ -87,18 +86,18 @@ public class itemUtils {
         ArrayList<String> lore = new ArrayList<>();
 
         switch (material){
+            case COAL:{
+                meta.setCustomModelData(14);
+                meta.setDisplayName("Coal Parts");
+                lore.add(cc("&8Put 4 in a crafting table"));
+                lore.add(cc("&8to get a coal"));
+                break;
+            }
             case RAW_IRON:{
                 meta.setCustomModelData(11);
                 meta.setDisplayName("Raw Iron Parts");
                 lore.add(cc("&8Put 3 in a crafting table"));
                 lore.add(cc("&8to get a raw iron"));
-                break;
-            }
-            case RAW_GOLD:{
-                meta.setCustomModelData(12);
-                meta.setDisplayName("Raw Gold Parts");
-                lore.add(cc("&8Put 3 in a crafting table"));
-                lore.add(cc("&8to get a raw gold"));
                 break;
             }
             case RAW_COPPER:{
@@ -108,11 +107,18 @@ public class itemUtils {
                 lore.add(cc("&8to get a raw copper"));
                 break;
             }
-            case COAL:{
-                meta.setCustomModelData(14);
-                meta.setDisplayName("Coal Parts");
-                lore.add(cc("&8Put 4 in a crafting table"));
-                lore.add(cc("&8to get a coal"));
+            case RAW_GOLD:{
+                meta.setCustomModelData(12);
+                meta.setDisplayName("Raw Gold Parts");
+                lore.add(cc("&8Put 3 in a crafting table"));
+                lore.add(cc("&8to get a raw gold"));
+                break;
+            }
+            case DIAMOND:{
+                meta.setCustomModelData(17);
+                meta.setDisplayName("Diamond Parts");
+                lore.add(cc("&8Put 5 in a crafting table"));
+                lore.add(cc("&8to get a diamond"));
                 break;
             }
             case LAPIS_LAZULI:{
@@ -127,13 +133,6 @@ public class itemUtils {
                 meta.setDisplayName("Redstone Parts");
                 lore.add(cc("&8Put 2 in a crafting table"));
                 lore.add(cc("&8to get a redstone dust"));
-                break;
-            }
-            case DIAMOND:{
-                meta.setCustomModelData(17);
-                meta.setDisplayName("Diamond Parts");
-                lore.add(cc("&8Put 5 in a crafting table"));
-                lore.add(cc("&8to get a diamond"));
                 break;
             }
             case QUARTZ:{
@@ -189,7 +188,7 @@ public class itemUtils {
         ItemStack backpack = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = backpack.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
-        int permlevel = pu.whatminingperm(p);
+        int permlevel = pu.whatwoodperm(p);
         if(permlevel == 1 || p.isOp()){
             meta.setDisplayName(cc("&c&lWood Backpack"));
             lore.add(cc("&8Tier 1"));
@@ -296,7 +295,7 @@ public class itemUtils {
         ItemStack backpack = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = backpack.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
-        int permlevel = pu.whatminingperm(p);
+        int permlevel = pu.whatfarmingperm(p);
         if(permlevel == 1 || p.isOp()){
             meta.setDisplayName(cc("&e&lFarming Backpack"));
             lore.add(cc("&8Tier 1"));
@@ -349,11 +348,10 @@ public class itemUtils {
     //Wood
 
     public ItemStack itemGuiOak(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.OAK_LOG);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("oak");
+        int itemamount = fileUtils.getloadedcontent(p).get("oak");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Oak Log"));
         lore.add(cc("&8Wood Backpack"));
@@ -373,11 +371,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiOakPart(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("oakpart");
+        int itemamount = fileUtils.getloadedcontent(p).get("oakpart");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Oak Log Part"));
         lore.add(cc("&8Wood Backpack"));
@@ -401,11 +398,10 @@ public class itemUtils {
     }
 
     public ItemStack itemGuiSpruce(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.SPRUCE_LOG);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("spruce");
+        int itemamount = fileUtils.getloadedcontent(p).get("spruce");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Spruce Log"));
         lore.add(cc("&8Wood Backpack"));
@@ -425,11 +421,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiSprucePart(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("sprucepart");
+        int itemamount = fileUtils.getloadedcontent(p).get("sprucepart");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Spruce Log Part"));
         lore.add(cc("&8Wood Backpack"));
@@ -453,13 +448,12 @@ public class itemUtils {
     }
 
     public ItemStack itemGuiBirch(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.BIRCH_LOG);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("birch");
+        int itemamount = fileUtils.getloadedcontent(p).get("birch");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&Birch Log"));
+        meta.setDisplayName(cc("&6Birch Log"));
         lore.add(cc("&8Wood Backpack"));
         lore.add(" ");
         lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
@@ -477,13 +471,12 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiBirchPart(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("birchpart");
+        int itemamount = fileUtils.getloadedcontent(p).get("birchpart");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&Birch Log Part"));
+        meta.setDisplayName(cc("&6Birch Log Part"));
         lore.add(cc("&8Wood Backpack"));
         lore.add(" ");
         lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
@@ -505,11 +498,10 @@ public class itemUtils {
     }
 
     public ItemStack itemGuiAcacia(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.ACACIA_LOG);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("acacia");
+        int itemamount = fileUtils.getloadedcontent(p).get("acacia");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Acacia Log"));
         lore.add(cc("&8Wood Backpack"));
@@ -529,11 +521,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiAcaciaPart(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("acaciapart");
+        int itemamount = fileUtils.getloadedcontent(p).get("acaciapart");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Acacia Log Part"));
         lore.add(cc("&8Wood Backpack"));
@@ -557,11 +548,10 @@ public class itemUtils {
     }
 
     public ItemStack itemGuiCherry(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.CHERRY_LOG);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("cherry");
+        int itemamount = fileUtils.getloadedcontent(p).get("cherry");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Cherry Log"));
         lore.add(cc("&8Wood Backpack"));
@@ -581,11 +571,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiCherryPart(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("cherrypart");
+        int itemamount = fileUtils.getloadedcontent(p).get("cherrypart");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Cherry Log Part"));
         lore.add(cc("&8Wood Backpack"));
@@ -609,11 +598,10 @@ public class itemUtils {
     }
 
     public ItemStack itemGuiDarkOak(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.DARK_OAK_LOG);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("darkoak");
+        int itemamount = fileUtils.getloadedcontent(p).get("darkoak");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Dark Oak Log"));
         lore.add(cc("&8Wood Backpack"));
@@ -633,11 +621,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiDarkOakPart(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("darkoakpart");
+        int itemamount = fileUtils.getloadedcontent(p).get("darkoakpart");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Dark Oak Log Part"));
         lore.add(cc("&8Wood Backpack"));
@@ -661,13 +648,12 @@ public class itemUtils {
     }
 
     public ItemStack itemGuiJungle(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.JUNGLE_LOG);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("jungle");
+        int itemamount = fileUtils.getloadedcontent(p).get("jungle");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&Jungle Log"));
+        meta.setDisplayName(cc("&6Jungle Log"));
         lore.add(cc("&8Wood Backpack"));
         lore.add(" ");
         lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
@@ -685,13 +671,12 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiJunglePart(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("junglepart");
+        int itemamount = fileUtils.getloadedcontent(p).get("junglepart");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&Jungle Log Part"));
+        meta.setDisplayName(cc("&6Jungle Log Part"));
         lore.add(cc("&8Wood Backpack"));
         lore.add(" ");
         lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
@@ -713,11 +698,10 @@ public class itemUtils {
     }
 
     public ItemStack itemGuiMangrove(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.MANGROVE_LOG);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("mangrove");
+        int itemamount = fileUtils.getloadedcontent(p).get("mangrove");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Mangrove Log"));
         lore.add(cc("&8Wood Backpack"));
@@ -737,11 +721,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiMangrovePart(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("mangrovepart");
+        int itemamount = fileUtils.getloadedcontent(p).get("mangrovepart");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&6Mangrove Log Part"));
         lore.add(cc("&8Wood Backpack"));
@@ -922,11 +905,10 @@ public class itemUtils {
     //Farming
 
     public ItemStack itemGuiWheat(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.WHEAT);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("wheat");
+        int itemamount = fileUtils.getloadedcontent(p).get("wheat");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&eWheat"));
         lore.add(cc("&8Farming Backpack"));
@@ -946,11 +928,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiPotato(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.POTATO);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("potato");
+        int itemamount = fileUtils.getloadedcontent(p).get("potato");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&ePotato"));
         lore.add(cc("&8Farming Backpack"));
@@ -970,11 +951,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiCarrot(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.CARROT);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("carrot");
+        int itemamount = fileUtils.getloadedcontent(p).get("carrot");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&eCarrot"));
         lore.add(cc("&8Farming Backpack"));
@@ -994,11 +974,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiBeetroot(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.BEETROOT);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("beetroot");
+        int itemamount = fileUtils.getloadedcontent(p).get("beetroot");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&eBeetroot"));
         lore.add(cc("&8Farming Backpack"));
@@ -1018,11 +997,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiSweetberries(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.SWEET_BERRIES);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("sweetberries");
+        int itemamount = fileUtils.getloadedcontent(p).get("sweetberries");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&eSweet Berries"));
         lore.add(cc("&8Farming Backpack"));
@@ -1042,11 +1020,10 @@ public class itemUtils {
         return item;
     }
     public ItemStack itemGuiPumpkin(Player p){
-        fileUtils fu = new fileUtils();
         permUtils pu = new permUtils();
         ItemStack item = new ItemStack(Material.PUMPKIN);
         ItemMeta meta = item.getItemMeta();
-        int itemamount = fu.getloadedcontent(p).get("pumpkin");
+        int itemamount = fileUtils.getloadedcontent(p).get("pumpkin");
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName(cc("&ePumpkin"));
         lore.add(cc("&8Farming Backpack"));
@@ -1065,6 +1042,122 @@ public class itemUtils {
 
         return item;
     }
+    public ItemStack itemGuiMelon(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.MELON_SLICE);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontent(p).get("melon");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&eMelon Slice"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiBrownMushroom(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.BROWN_MUSHROOM);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontent(p).get("brownmushroom");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&eBrown Mushroom"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiRedMushroom(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.RED_MUSHROOM);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontent(p).get("redmushroom");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&eRed Mushroom"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiNetherwart(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.NETHER_WART);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontent(p).get("netherwart");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&eNetherwart"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiSugarcane(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.SUGAR_CANE);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontent(p).get("sugarcane");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&eSugar Cane"));
+        lore.add(cc("&8Farming Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.woodpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
 
 
 
