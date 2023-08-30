@@ -108,16 +108,18 @@ public class guiInteraction implements Listener {
         }
 
 
-        e.setCancelled(true);
         Player p = (Player) e.getWhoClicked();
         invUtils iu = new invUtils();
         fileUtils fu = new fileUtils();
         guiUtils gu = new guiUtils();
         permUtils pu = new permUtils();
-        if (e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) {
-            return;
-        }
         if (e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Wood Backpack"))) {
+            e.setCancelled(true);
+            if(e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) {
+                return;
+            }
+            if(e.getCurrentItem().getType() == Material.BARRIER){p.closeInventory();}
+
             if (e.getClickedInventory() == e.getView().getTopInventory()) {
                 //Click sur l'inventaire du backpack
                 if (e.getCurrentItem().getType() == Material.FIREWORK_STAR) {
@@ -138,10 +140,15 @@ public class guiInteraction implements Listener {
                                 }
                             }
                         }
+                        else if(amount <= 64){
+                            item.setAmount(amount);
+                            p.getInventory().addItem(item);
+                        }
                         fileUtils.setmaterialint(p, fireworklist.get(modeldata), 0);
                         p.openInventory(gu.getWoodBackpack(p));
                     }
-                } else if (iu.scaninventorysimple(p, e.getCurrentItem().getType())) {
+                }
+                else if (iu.scaninventorysimple(p, e.getCurrentItem().getType())) {
                     ItemStack item = new ItemStack(e.getCurrentItem().getType());
                     int amount = fileUtils.getmaterialint(p, matlist.get(item.getType()));
                     if (amount > 64) {
@@ -157,11 +164,17 @@ public class guiInteraction implements Listener {
                             }
                         }
                     }
+                    else if(amount <= 64){
+                        item.setAmount(amount);
+                        p.getInventory().addItem(item);
+                    }
                     fileUtils.setmaterialint(p, matlist.get(item.getType()), 0);
                     p.openInventory(gu.getWoodBackpack(p));
 
                 }
-            } else if (e.getClickedInventory() == e.getView().getBottomInventory()) {
+            }
+            else if (e.getClickedInventory() == e.getView().getBottomInventory()) {
+                //click dans l'inventaire du joueur
                 if (e.getCurrentItem().getType() == Material.FIREWORK_STAR) {
                     if (e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasCustomModelData()) {
                         int modeldata = e.getCurrentItem().getItemMeta().getCustomModelData();
@@ -177,7 +190,8 @@ public class guiInteraction implements Listener {
                             }
                         }
                     }
-                } else if (wooditems.contains(e.getCurrentItem().getType())) {
+                }
+                else if (wooditems.contains(e.getCurrentItem().getType())) {
                     ItemStack item = e.getCurrentItem();
                     int newamount = item.getAmount() + fileUtils.getmaterialint(p, matlist.get(item.getType()));
                     if (newamount <= iu.tierinventorybackpack(p, "wood")) {
@@ -188,7 +202,141 @@ public class guiInteraction implements Listener {
                 }
             }
         }
-        if (e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Mining Backpack"))) {}
-        if (e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Farming Backpack"))) {}
+        if (e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Mining Backpack"))) {
+            e.setCancelled(true);
+            if(e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) {
+                return;
+            }
+            if(e.getCurrentItem().getType() == Material.BARRIER){p.closeInventory();}
+
+            if (e.getClickedInventory() == e.getView().getTopInventory()) {
+                //Click sur l'inventaire du backpack
+                if (e.getCurrentItem().getType() == Material.FIREWORK_STAR) {
+                    int modeldata = e.getCurrentItem().getItemMeta().getCustomModelData();
+                    if (iu.scaninventoryfirework(p, modeldata)) {
+                        ItemStack item = new itemUtils().Ores(modeldata);
+                        int amount = fileUtils.getmaterialint(p, fireworklist.get(modeldata));
+                        if (amount > 64) {
+                            for (int i = amount; i > 0; ) {
+                                if (i > 64) {
+                                    item.setAmount(64);
+                                    p.getInventory().addItem(item);
+                                    i = i - 64;
+                                } else {
+                                    item.setAmount(i);
+                                    p.getInventory().addItem(item);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(amount <= 64){
+                            item.setAmount(amount);
+                            p.getInventory().addItem(item);
+                        }
+                        fileUtils.setmaterialint(p, fireworklist.get(modeldata), 0);
+                        p.openInventory(gu.getWoodBackpack(p));
+                    }
+                }
+                else if (iu.scaninventorysimple(p, e.getCurrentItem().getType())) {
+                    ItemStack item = new ItemStack(e.getCurrentItem().getType());
+                    int amount = fileUtils.getmaterialint(p, matlist.get(item.getType()));
+                    if (amount > 64) {
+                        for (int i = amount; i > 0; ) {
+                            if (i > 64) {
+                                item.setAmount(64);
+                                p.getInventory().addItem(item);
+                                i = i - 64;
+                            } else {
+                                item.setAmount(i);
+                                p.getInventory().addItem(item);
+                                break;
+                            }
+                        }
+                    }
+                    else if(amount <= 64){
+                        item.setAmount(amount);
+                        p.getInventory().addItem(item);
+                    }
+                    fileUtils.setmaterialint(p, matlist.get(item.getType()), 0);
+                    p.openInventory(gu.getWoodBackpack(p));
+
+                }
+            }
+            else if (e.getClickedInventory() == e.getView().getBottomInventory()) {
+                //click dans l'inventaire du joueur
+                if (e.getCurrentItem().getType() == Material.FIREWORK_STAR) {
+                    if (e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasCustomModelData()) {
+                        int modeldata = e.getCurrentItem().getItemMeta().getCustomModelData();
+                        if (fireworklist.containsKey(modeldata)) {
+                            if (modeldata >= 11 && modeldata <= 19) {
+                                ItemStack item = e.getCurrentItem();
+                                int newamount = item.getAmount() + fileUtils.getmaterialint(p, fireworklist.get(modeldata));
+                                if (newamount <= iu.tierinventorybackpack(p, "mining")) {
+                                    p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
+                                    fileUtils.setmaterialint(p, fireworklist.get(modeldata), newamount);
+                                    p.openInventory(gu.getWoodBackpack(p));
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (wooditems.contains(e.getCurrentItem().getType())) {
+                    ItemStack item = e.getCurrentItem();
+                    int newamount = item.getAmount() + fileUtils.getmaterialint(p, matlist.get(item.getType()));
+                    if (newamount <= iu.tierinventorybackpack(p, "mining")) {
+                        p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
+                        fileUtils.setmaterialint(p, matlist.get(item.getType()), newamount);
+                        p.openInventory(gu.getWoodBackpack(p));
+                    }
+                }
+            }
+        }
+        if (e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Farming Backpack"))) {
+            e.setCancelled(true);
+            if(e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) {
+                return;
+            }
+            if(e.getCurrentItem().getType() == Material.BARRIER){p.closeInventory();}
+
+            if (e.getClickedInventory() == e.getView().getTopInventory()) {
+                //Click sur l'inventaire du backpack
+                if (iu.scaninventorysimple(p, e.getCurrentItem().getType())) {
+                    ItemStack item = new ItemStack(e.getCurrentItem().getType());
+                    int amount = fileUtils.getmaterialint(p, matlist.get(item.getType()));
+                    if (amount > 64) {
+                        for (int i = amount; i > 0; ) {
+                            if (i > 64) {
+                                item.setAmount(64);
+                                p.getInventory().addItem(item);
+                                i = i - 64;
+                            } else {
+                                item.setAmount(i);
+                                p.getInventory().addItem(item);
+                                break;
+                            }
+                        }
+                    }
+                    else if(amount <= 64){
+                        item.setAmount(amount);
+                        p.getInventory().addItem(item);
+                    }
+                    fileUtils.setmaterialint(p, matlist.get(item.getType()), 0);
+                    p.openInventory(gu.getWoodBackpack(p));
+
+                }
+            }
+            else if (e.getClickedInventory() == e.getView().getBottomInventory()) {
+                //click dans l'inventaire du joueur
+                 if (wooditems.contains(e.getCurrentItem().getType())) {
+                    ItemStack item = e.getCurrentItem();
+                    int newamount = item.getAmount() + fileUtils.getmaterialint(p, matlist.get(item.getType()));
+                    if (newamount <= iu.tierinventorybackpack(p, "farming")) {
+                        p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
+                        fileUtils.setmaterialint(p, matlist.get(item.getType()), newamount);
+                        p.openInventory(gu.getWoodBackpack(p));
+                    }
+                }
+            }
+        }
     }
 }

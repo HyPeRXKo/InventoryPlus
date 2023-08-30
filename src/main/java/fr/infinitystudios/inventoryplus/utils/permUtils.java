@@ -51,14 +51,14 @@ public class permUtils {
         if(p.hasPermission("inventoryplus.wood.1")){return plugin.getConfig().getInt("capacity.wood.tier1");}
         else if(p.hasPermission("inventoryplus.wood.2")){return plugin.getConfig().getInt("capacity.wood.tier2");}
         else if(p.hasPermission("inventoryplus.wood.3")){return plugin.getConfig().getInt("capacity.wood.tier3");}
-        else {return 0;}
+        else {return 32;}
     }
 
     public int woodpermstacklmimit(int level){
         if(level == 1){return plugin.getConfig().getInt("capacity.wood.tier1");}
         else if(level == 2){return plugin.getConfig().getInt("capacity.wood.tier2");}
         else if(level == 3){return plugin.getConfig().getInt("capacity.wood.tier3");}
-        else {return 0;}
+        else {return 32;}
     }
 
 
