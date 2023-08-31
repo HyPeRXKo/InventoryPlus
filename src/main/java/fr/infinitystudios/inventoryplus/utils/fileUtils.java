@@ -18,7 +18,7 @@ import java.util.UUID;
 public class fileUtils {
     private static final InventoryPlus plugin = InventoryPlus.getPlugin();
 
-    private static final String[] ores = {"coal", "coalpart", "copper", "rawcopper", "copperpart", "iron", "rawiron", "ironpart", "gold", "rawgold", "goldpart", "redstone", "redstonepart", "lapis", "lapispart", "diamond", "diamondpart", "emerald", "quartz", "quartzpart", "netherite", "netheritepart"};
+    private static final String[] ores = {"coal", "coalpart", "copper", "rawcopper", "rawcopperpart", "iron", "rawiron", "rawironpart", "gold", "rawgold", "rawgoldpart", "redstone", "redstonepart", "lapis", "lapispart", "diamond", "diamondpart", "emerald", "quartz", "quartzpart", "netherite", "netheritepart"};
     private static final String[] woods = {"oak", "oakpart", "spruce", "sprucepart", "birch", "birchpart", "acacia", "acaciapart", "cherry", "cherrypart", "darkoak", "darkoakpart", "jungle", "junglepart", "mangrove", "mangrovepart"};
     private static final String[] farming = {"wheat", "carrot", "potato", "beetroot", "sweetberries", "pumpkin", "melon", "sugarcane", "netherwart", "brownmushroom", "redmushroom"};
 

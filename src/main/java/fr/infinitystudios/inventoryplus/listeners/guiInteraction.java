@@ -27,7 +27,6 @@ public class guiInteraction implements Listener {
 
     @EventHandler
     public void GuiInteractionEvent(InventoryClickEvent e) {
-        //if(!e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Mining Backpack"))) {return;}
         if (matlist.isEmpty()) {
             matlist.put(Material.COAL, "coal");
             matlist.put(Material.RAW_IRON, "rawiron");
@@ -110,9 +109,7 @@ public class guiInteraction implements Listener {
 
         Player p = (Player) e.getWhoClicked();
         invUtils iu = new invUtils();
-        fileUtils fu = new fileUtils();
         guiUtils gu = new guiUtils();
-        permUtils pu = new permUtils();
         if (e.getView().getTitle().contains(ChatColor.translateAlternateColorCodes('&', "&6Wood Backpack"))) {
             e.setCancelled(true);
             if(e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) {
@@ -234,7 +231,7 @@ public class guiInteraction implements Listener {
                             p.getInventory().addItem(item);
                         }
                         fileUtils.setmaterialint(p, fireworklist.get(modeldata), 0);
-                        p.openInventory(gu.getWoodBackpack(p));
+                        p.openInventory(gu.getMiningBackpack(p));
                     }
                 }
                 else if (iu.scaninventorysimple(p, e.getCurrentItem().getType())) {
@@ -258,7 +255,7 @@ public class guiInteraction implements Listener {
                         p.getInventory().addItem(item);
                     }
                     fileUtils.setmaterialint(p, matlist.get(item.getType()), 0);
-                    p.openInventory(gu.getWoodBackpack(p));
+                    p.openInventory(gu.getMiningBackpack(p));
 
                 }
             }
@@ -274,7 +271,7 @@ public class guiInteraction implements Listener {
                                 if (newamount <= iu.tierinventorybackpack(p, "mining")) {
                                     p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                                     fileUtils.setmaterialint(p, fireworklist.get(modeldata), newamount);
-                                    p.openInventory(gu.getWoodBackpack(p));
+                                    p.openInventory(gu.getMiningBackpack(p));
                                 }
                             }
                         }
@@ -286,7 +283,7 @@ public class guiInteraction implements Listener {
                     if (newamount <= iu.tierinventorybackpack(p, "mining")) {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         fileUtils.setmaterialint(p, matlist.get(item.getType()), newamount);
-                        p.openInventory(gu.getWoodBackpack(p));
+                        p.openInventory(gu.getMiningBackpack(p));
                     }
                 }
             }
@@ -321,7 +318,7 @@ public class guiInteraction implements Listener {
                         p.getInventory().addItem(item);
                     }
                     fileUtils.setmaterialint(p, matlist.get(item.getType()), 0);
-                    p.openInventory(gu.getWoodBackpack(p));
+                    p.openInventory(gu.getFarmingBackpack(p));
 
                 }
             }
@@ -333,7 +330,7 @@ public class guiInteraction implements Listener {
                     if (newamount <= iu.tierinventorybackpack(p, "farming")) {
                         p.getInventory().setItem(e.getSlot(), new ItemStack(Material.AIR));
                         fileUtils.setmaterialint(p, matlist.get(item.getType()), newamount);
-                        p.openInventory(gu.getWoodBackpack(p));
+                        p.openInventory(gu.getFarmingBackpack(p));
                     }
                 }
             }

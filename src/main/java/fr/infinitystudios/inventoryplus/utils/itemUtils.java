@@ -908,156 +908,540 @@ public class itemUtils {
 
     //Mining
 
-    public ItemStack ItemGuiDiamond(Player p){
-        fileUtils fu = new fileUtils();
+    public ItemStack itemGuiCoal(Player p){
         permUtils pu = new permUtils();
-        ItemStack diamond = new ItemStack(Material.DIAMOND);
-        ItemMeta meta = diamond.getItemMeta();
-        int diamondamount = fu.getPlayerConfig(p).getInt("mining.diamond");
+        ItemStack item = new ItemStack(Material.COAL);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("coal");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&bDiamond"));
+        meta.setDisplayName(cc("&BCoal"));
         lore.add(cc("&8Mining Backpack"));
         lore.add(" ");
-        lore.add(cc("&7Stored: &6" + diamondamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
         lore.add(" ");
         lore.add(cc("&bClick to pickup"));
 
-        if(diamondamount > 0) {
+        if(itemamount > 0) {
             meta.addEnchant(Enchantment.MENDING, 1, true);
         }
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
 
         meta.setLore(lore);
-        diamond.setItemMeta(meta);
+        item.setItemMeta(meta);
 
-        return diamond;
+        return item;
     }
-    public ItemStack ItemGuiGoldIngot(Player p){
-        fileUtils fu = new fileUtils();
+    public ItemStack itemGuiCoalPart(Player p){
         permUtils pu = new permUtils();
-        ItemStack gold = new ItemStack(Material.GOLD_INGOT);
-        ItemMeta meta = gold.getItemMeta();
-        int goldamount = fu.getPlayerConfig(p).getInt("mining.gold");
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("coalpart");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&6Gold Ingot"));
+        meta.setDisplayName(cc("&BCoal Part"));
         lore.add(cc("&8Mining Backpack"));
         lore.add(" ");
-        lore.add(cc("&7Stored: &6" + goldamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
         lore.add(" ");
         lore.add(cc("&bClick to pickup"));
 
-        if(goldamount > 0) {
+        meta.setCustomModelData(14);
+
+        if(itemamount > 0) {
             meta.addEnchant(Enchantment.MENDING, 1, true);
         }
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
 
         meta.setLore(lore);
-        gold.setItemMeta(meta);
+        item.setItemMeta(meta);
 
-        return gold;
+        return item;
     }
-    public ItemStack ItemGuiGoldRaw(Player p){
-        fileUtils fu = new fileUtils();
+
+    public ItemStack itemGuiIronIngot(Player p){
         permUtils pu = new permUtils();
-        ItemStack rawgold = new ItemStack(Material.RAW_GOLD);
-        ItemMeta meta = rawgold.getItemMeta();
-        int rawgoldamount = fu.getPlayerConfig(p).getInt("mining.rawgold");
+        ItemStack item = new ItemStack(Material.IRON_INGOT);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("iron");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&6Raw Gold"));
+        meta.setDisplayName(cc("&BIron"));
         lore.add(cc("&8Mining Backpack"));
         lore.add(" ");
-        lore.add(cc("&7Stored: &6" + rawgoldamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
         lore.add(" ");
         lore.add(cc("&bClick to pickup"));
 
-        if(rawgoldamount > 0) {
+        if(itemamount > 0) {
             meta.addEnchant(Enchantment.MENDING, 1, true);
         }
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
 
         meta.setLore(lore);
-        rawgold.setItemMeta(meta);
+        item.setItemMeta(meta);
 
-        return rawgold;
+        return item;
     }
-    public ItemStack ItemGuiIronRaw(Player p){
-        fileUtils fu = new fileUtils();
+    public ItemStack itemGuiRawIron(Player p){
         permUtils pu = new permUtils();
-        ItemStack rawiron = new ItemStack(Material.RAW_IRON);
-        ItemMeta meta = rawiron.getItemMeta();
-        int rawironamount = fu.getPlayerConfig(p).getInt("mining.rawiron");
+        ItemStack item = new ItemStack(Material.RAW_IRON);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("rawiron");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&fRaw Iron"));
+        meta.setDisplayName(cc("&BRaw Iron"));
         lore.add(cc("&8Mining Backpack"));
         lore.add(" ");
-        lore.add(cc("&7Stored: &6" + rawironamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
         lore.add(" ");
         lore.add(cc("&bClick to pickup"));
 
-        if(rawironamount > 0) {
+        if(itemamount > 0) {
             meta.addEnchant(Enchantment.MENDING, 1, true);
         }
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
 
         meta.setLore(lore);
-        rawiron.setItemMeta(meta);
+        item.setItemMeta(meta);
 
-        return rawiron;
+        return item;
     }
-    public ItemStack ItemGuiIronIngot(Player p){
-        fileUtils fu = new fileUtils();
+    public ItemStack itemGuiRawIronPart(Player p){
         permUtils pu = new permUtils();
-        ItemStack iron = new ItemStack(Material.IRON_INGOT);
-        ItemMeta meta = iron.getItemMeta();
-        int ironamount = fu.getPlayerConfig(p).getInt("mining.iron");
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("rawironpart");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&fIron Ingot"));
+        meta.setDisplayName(cc("&BRaw Iron Part"));
         lore.add(cc("&8Mining Backpack"));
         lore.add(" ");
-        lore.add(cc("&7Stored: &6" + ironamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
         lore.add(" ");
         lore.add(cc("&bClick to pickup"));
 
-        if(ironamount > 0) {
+        meta.setCustomModelData(11);
+
+        if(itemamount > 0) {
             meta.addEnchant(Enchantment.MENDING, 1, true);
         }
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
 
         meta.setLore(lore);
-        iron.setItemMeta(meta);
+        item.setItemMeta(meta);
 
-        return iron;
+        return item;
     }
-    public ItemStack ItemGuiCoal(Player p){
-        fileUtils fu = new fileUtils();
+    public ItemStack itemGuiGoldIngot(Player p){
         permUtils pu = new permUtils();
-        ItemStack coal = new ItemStack(Material.COAL);
-        ItemMeta meta = coal.getItemMeta();
-        int coalamount = fu.getPlayerConfig(p).getInt("mining.coal");
+        ItemStack item = new ItemStack(Material.GOLD_INGOT);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("gold");
         ArrayList<String> lore = new ArrayList<>();
-        meta.setDisplayName(cc("&7Coal Ingot"));
+        meta.setDisplayName(cc("&BGold Ingot"));
         lore.add(cc("&8Mining Backpack"));
         lore.add(" ");
-        lore.add(cc("&7Stored: &6" + coalamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
         lore.add(" ");
         lore.add(cc("&bClick to pickup"));
 
-        if(coalamount > 0) {
+        if(itemamount > 0) {
             meta.addEnchant(Enchantment.MENDING, 1, true);
         }
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
 
         meta.setLore(lore);
-        coal.setItemMeta(meta);
+        item.setItemMeta(meta);
 
-        return coal;
+        return item;
     }
+    public ItemStack itemGuiRawGold(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.RAW_GOLD);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("rawgold");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BRaw Gold"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiRawGoldPart(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("rawgoldpart");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BRaw Gold Part"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        meta.setCustomModelData(12);
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public ItemStack itemGuiCopperIngot(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.COPPER_INGOT);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("copper");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&bCopper Ingot"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiRawCopper(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.RAW_COPPER);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("rawcopper");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&bRaw Copper"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiRawCopperPart(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("rawcopperpart");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&bRaw Copper Part"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        meta.setCustomModelData(13);
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public ItemStack itemGuiDiamond(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.DIAMOND);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("diamond");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BDiamond"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public ItemStack itemGuiDiamondPart(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("diamondpart");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BDiamond Part"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+
+        meta.setCustomModelData(17);
+
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public ItemStack itemGuiLapis(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.LAPIS_LAZULI);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("lapis");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BLapis Lazuli"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiLapisPart(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("lapispart");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BLapis Lazuli Part"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        meta.setCustomModelData(15);
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public ItemStack itemGuiRedstone(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.REDSTONE);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("redstone");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BRedstone"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiRedstonePart(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("redstonepart");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BRedstone Part"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        meta.setCustomModelData(16);
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public ItemStack itemGuiQuartz(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.QUARTZ);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("quartz");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BQuartz"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiQuartzPart(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("quartzpart");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BQuartz Part"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        meta.setCustomModelData(18);
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiAncientDebris(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.ANCIENT_DEBRIS);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("netherite");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BAncient Debris"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiAncientDebrisPart(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.FIREWORK_STAR);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("netheritepart");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BAncient Debris Part"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        meta.setCustomModelData(19);
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+    public ItemStack itemGuiEmerald(Player p){
+        permUtils pu = new permUtils();
+        ItemStack item = new ItemStack(Material.EMERALD);
+        ItemMeta meta = item.getItemMeta();
+        int itemamount = fileUtils.getloadedcontentPlayer(p).get("emerald");
+        ArrayList<String> lore = new ArrayList<>();
+        meta.setDisplayName(cc("&BEmerald"));
+        lore.add(cc("&8Mining Backpack"));
+        lore.add(" ");
+        lore.add(cc("&7Stored: &6" + itemamount + "&7/" + pu.miningpermstacklmimit(p)));
+        lore.add(" ");
+        lore.add(cc("&bClick to pickup"));
+
+        if(itemamount > 0) {
+            meta.addEnchant(Enchantment.MENDING, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+
 
     //Farming
 

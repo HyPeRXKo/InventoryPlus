@@ -15,15 +15,39 @@ public class guiUtils {
 
         itemUtils iu = new itemUtils();
 
-        Inventory gui = Bukkit.createInventory(null, 27, cc("&6Mining Backpack"));
+        Inventory gui = Bukkit.createInventory(null, 54, cc("&6Mining Backpack"));
 
-        gui.setItem(2, iu.ItemGuiGoldIngot(p));
-        gui.setItem(3, iu.ItemGuiIronIngot(p));
-        gui.setItem(10, iu.ItemGuiDiamond(p));
-        gui.setItem(11, iu.ItemGuiGoldRaw(p));
-        gui.setItem(12, iu.ItemGuiIronRaw(p));
-        gui.setItem(13, iu.ItemGuiCoal(p));
-        gui.setItem(19, iu.ItemMiningBackpack(p));
+        gui.setItem(10, iu.itemGuiCoal(p));
+        gui.setItem(19, iu.itemGuiCoalPart(p));
+
+        gui.setItem(11, iu.itemGuiIronIngot(p));
+        gui.setItem(20, iu.itemGuiRawIron(p));
+        gui.setItem(29, iu.itemGuiRawIronPart(p));
+
+        gui.setItem(12, iu.itemGuiCopperIngot(p));
+        gui.setItem(21, iu.itemGuiRawCopper(p));
+        gui.setItem(30, iu.itemGuiRawCopperPart(p));
+
+        gui.setItem(13, iu.itemGuiGoldIngot(p));
+        gui.setItem(22, iu.itemGuiRawGold(p));
+        gui.setItem(31, iu.itemGuiRawGoldPart(p));
+
+        gui.setItem(14, iu.itemGuiDiamond(p));
+        gui.setItem(23, iu.itemGuiDiamondPart(p));
+
+        gui.setItem(15, iu.itemGuiLapis(p));
+        gui.setItem(24, iu.itemGuiLapisPart(p));
+
+        gui.setItem(16, iu.itemGuiRedstone(p));
+        gui.setItem(25, iu.itemGuiRedstonePart(p));
+
+        gui.setItem(32, iu.itemGuiQuartz(p));
+        gui.setItem(41, iu.itemGuiQuartzPart(p));
+
+        gui.setItem(34, iu.itemGuiAncientDebris(p));
+        gui.setItem(43, iu.itemGuiAncientDebrisPart(p));
+
+        gui.setItem(39, iu.itemGuiEmerald(p));
 
         return gui;
     }

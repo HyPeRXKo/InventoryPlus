@@ -33,8 +33,11 @@ public class playerLoot implements Listener {
     public void PlayerLootEvent(EntityPickupItemEvent e){
         if(matlist.isEmpty()){
             matlist.put(Material.COAL, "coal");
+            matlist.put(Material.IRON_INGOT, "iron");
             matlist.put(Material.RAW_IRON, "rawiron");
+            matlist.put(Material.COPPER_INGOT, "copper");
             matlist.put(Material.RAW_COPPER, "rawcopper");
+            matlist.put(Material.GOLD_INGOT, "gold");
             matlist.put(Material.RAW_GOLD, "rawgold");
             matlist.put(Material.DIAMOND, "diamond");
             matlist.put(Material.EMERALD, "emerald");
@@ -64,8 +67,11 @@ public class playerLoot implements Listener {
         }
         if(miningitems.isEmpty()){
             miningitems.add(Material.COAL);
+            miningitems.add(Material.IRON_INGOT);
             miningitems.add(Material.RAW_IRON);
+            miningitems.add(Material.COPPER_INGOT);
             miningitems.add(Material.RAW_COPPER);
+            miningitems.add(Material.GOLD_INGOT);
             miningitems.add(Material.RAW_GOLD);
             miningitems.add(Material.DIAMOND);
             miningitems.add(Material.EMERALD);
@@ -104,6 +110,9 @@ public class playerLoot implements Listener {
             }
             for (Material mat: miningitems) {
                 if(mat == Material.EMERALD){continue;}
+                if(mat == Material.IRON_INGOT){continue;}
+                if(mat == Material.GOLD_INGOT){continue;}
+                if(mat == Material.COPPER_INGOT){continue;}
                 fireworklist.put(iu.Ores(mat).getItemMeta().getCustomModelData(), matlist.get(mat) + "part");
             }
         }
