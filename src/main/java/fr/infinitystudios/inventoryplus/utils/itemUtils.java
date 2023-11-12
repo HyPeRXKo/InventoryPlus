@@ -337,7 +337,7 @@ public class itemUtils {
         ItemMeta meta = backpack.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         int permlevel = pu.whatwoodperm(p);
-        if(permlevel == 1 || p.isOp()){
+        if(permlevel == 1){
             meta.setDisplayName(cc("&c&lWood Backpack"));
             lore.add(cc("&8Tier 1"));
             lore.add("");
@@ -393,7 +393,7 @@ public class itemUtils {
         ItemMeta meta = backpack.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         int permlevel = pu.whatminingperm(p);
-        if(permlevel == 1 || p.isOp()){
+        if(permlevel == 1){
             meta.setDisplayName(cc("&9&lMining Backpack"));
             lore.add(cc("&8Tier 1"));
             lore.add("");
@@ -450,7 +450,7 @@ public class itemUtils {
         ItemMeta meta = backpack.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         int permlevel = pu.whatfarmingperm(p);
-        if(permlevel == 1 || p.isOp()){
+        if(permlevel == 1){
             meta.setDisplayName(cc("&e&lFarming Backpack"));
             lore.add(cc("&8Tier 1"));
             lore.add("");

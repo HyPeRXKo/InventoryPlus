@@ -49,6 +49,8 @@ public class guiUtils {
 
         gui.setItem(39, iu.itemGuiEmerald(p));
 
+        gui.setItem(53, iu.exitBarrier());
+
         return gui;
     }
 

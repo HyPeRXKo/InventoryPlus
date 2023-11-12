@@ -56,7 +56,7 @@ public final class InventoryPlus extends JavaPlugin {
     public void onDisable() {
         fileUtils fu = new fileUtils();
         Map<UUID, Map<String, Integer>> contentsavedasync = fileUtils.getloadedcontent();
-        contentsavedasync.forEach((k, v) -> fu.savePlayerConfig(k, v));
+        contentsavedasync.forEach((k, v) -> fu.saveOfflinePlayerConfig(k, v));
 
         plugin.getLogger().info("InventoryPlus did a correct save");
     }

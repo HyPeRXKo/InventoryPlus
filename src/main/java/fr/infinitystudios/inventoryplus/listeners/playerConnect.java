@@ -7,8 +7,25 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class playerConnect implements Listener {
+
+    Map<UUID, Boolean> resourcePackResponses = new HashMap<>();
+
+    @EventHandler
+    public void onResourcePackStatus(PlayerResourcePackStatusEvent event) {
+        Player p = event.getPlayer();
+
+        // Check if the player has accepted the resource pack
+        if (event.getStatus() == PlayerResourcePackStatusEvent.Status.ACCEPTED) {
+            resourcePackResponses.put(p.getUniqueId(), true);
+        }
+    }
 
     @EventHandler
     public void OnPlayerConnection(PlayerLoginEvent e){
@@ -31,10 +48,16 @@ public class playerConnect implements Listener {
     @EventHandler
     public void onPlayerDisconnection(PlayerQuitEvent e){
         Player p = e.getPlayer();
+
+        if(!resourcePackResponses.containsKey(p.getUniqueId())){
+            return;
+        }
+
         fileUtils fu = new fileUtils();
 
         fu.savePlayerConfig(p, fileUtils.getloadedcontentPlayer(p));
         fileUtils.deleteloadedcontent(p);
+        resourcePackResponses.remove(p.getUniqueId());
     }
 
     @EventHandler

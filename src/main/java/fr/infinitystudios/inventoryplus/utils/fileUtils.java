@@ -142,6 +142,27 @@ public class fileUtils {
         catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();}
     }
+    public void saveOfflinePlayerConfig(UUID uuid, Map<String, Integer> content){
+        FileConfiguration playerdata;
+        File playerdatafile = new File(plugin.getDataFolder() + "/data/", uuid + ".yml");
+        playerdata = new YamlConfiguration();
+        playerdata.set("player", Bukkit.getOfflinePlayer(uuid).getName());
+        for(String i: ores){
+            playerdata.set("mining." + i, content.get(i));
+        }
+        for(String i: woods){
+            playerdata.set("wood." + i, content.get(i));
+        }
+        for(String i: farming){
+            playerdata.set("farming." + i, content.get(i));
+        }
+
+        try {
+            playerdata.save(playerdatafile);}
+        catch (IOException | IllegalArgumentException e) {
+            e.printStackTrace();}
+    }
+
 
 
     public Map<String, Integer> getConfigContent(FileConfiguration playerfile){
